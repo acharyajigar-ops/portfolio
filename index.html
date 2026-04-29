@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jigar Acharya - IT Infrastructure & Systems Engineer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            color: #415a77;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            background: #ffffff;
+            box-shadow: 0 2px 8px rgba(27, 38, 59, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1b263b;
+            font-family: 'Playfair Display', serif;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #415a77;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #0d1b2a;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .hero .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-family: 'Playfair Display', serif;
+            color: #1b263b;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #778da9;
+            margin-bottom: 2rem;
+        }
+
+        .hero .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.875rem 2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: #1b263b;
+            color: #ffffff;
+        }
+
+        .btn-primary:hover {
+            background: #0d1b2a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(27, 38, 59, 0.2);
+        }
+
+        .btn-secondary {
+            background: #ffffff;
+            color: #1b263b;
+            border: 2px solid #1b263b;
+        }
+
+        .btn-secondary:hover {
+            background: #1b263b;
+            color: #ffffff;
+        }
+
+        /* Overview Section */
+        .overview {
+            background: #ffffff;
+            padding: 4rem 2rem;
+        }
+
+        .overview .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-family: 'Playfair Display', serif;
+            color: #1b263b;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .metric-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 4px;
+            text-align: center;
+            border-top: 3px solid #1b263b;
+        }
+
+        .metric-card h3 {
+            font-size: 2.5rem;
+            color: #1b263b;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-card p {
+            color: #778da9;
+            font-weight: 500;
+        }
+
+        /* Competencies Section */
+        .competencies {
+            background: #f8f9fa;
+            padding: 4rem 2rem;
+        }
+
+        .competencies .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .competencies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .competency-item {
+            background: #ffffff;
+            padding: 2rem;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(27, 38, 59, 0.06);
+        }
+
+        .competency-item h4 {
+            font-size: 1.25rem;
+            color: #1b263b;
+            margin-bottom: 1rem;
+        }
+
+        .competency-item p {
+            color: #415a77;
+            font-size: 0.95rem;
+        }
+
+        /* Highlights Section */
+        .highlights {
+            background: #ffffff;
+            padding: 4rem 2rem;
+        }
+
+        .highlights .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .highlight-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 4px;
+            border-left: 4px solid #1b263b;
+        }
+
+        .highlight-card h4 {
+            color: #1b263b;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .highlight-card p {
+            color: #778da9;
+            font-size: 0.9rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, #1b263b 0%, #0d1b2a 100%);
+            color: #ffffff;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .contact .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .contact h2 {
+            font-size: 2.5rem;
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 1rem;
+        }
+
+        .contact p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .contact-info-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .contact-info-item strong {
+            display: block;
+            margin-bottom: 0.5rem;
+            opacity: 0.8;
+        }
+
+        .contact-info-item span {
+            font-size: 1rem;
+        }
+
+        .contact .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-light {
+            background: #ffffff;
+            color: #1b263b;
+            padding: 0.875rem 2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-light:hover {
+            background: #e9ecef;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: #0d1b2a;
+            color: #778da9;
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 1.75rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .hero .cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">Jigar Acharya</div>
+            <ul>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#competencies">Competencies</a></li>
+                <li><a href="#highlights">Highlights</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>IT Infrastructure & Systems Engineer</h1>
+            <p>15+ Years of Driving Secure, Scalable, and Resilient IT Environments</p>
+            <div class="cta-buttons">
+                <a href="Jigar_Acharya__IT_Infrastructure___Systems_Engineer__Executive_Edition.pdf" class="btn btn-primary" download>Download Portfolio (PDF)</a>
+                <a href="https://calendar.app.google/1Qoiy76WvWXRWqL18" class="btn btn-secondary" target="_blank">Schedule a Meeting</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section class="overview" id="overview">
+        <div class="container">
+            <h2 class="section-title">Professional Overview</h2>
+            <p style="text-align: center; font-size: 1.1rem; margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                Over 15 years of expertise in designing, implementing, and managing complex IT solutions across cloud, security, virtualization, and networking. Proven ability to deliver measurable improvements in performance, security, and operational efficiency through strategic leadership and cutting-edge technology adoption.
+            </p>
+            <div class="metrics">
+                <div class="metric-card">
+                    <h3>30+</h3>
+                    <p>Platforms & Technologies</p>
+                </div>
+                <div class="metric-card">
+                    <h3>54+</h3>
+                    <p>Projects Delivered</p>
+                </div>
+                <div class="metric-card">
+                    <h3>13+</h3>
+                    <p>Industry Certifications</p>
+                </div>
+                <div class="metric-card">
+                    <h3>15+</h3>
+                    <p>Years of Experience</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Competencies Section -->
+    <section class="competencies" id="competencies">
+        <div class="container">
+            <h2 class="section-title">Core Competencies</h2>
+            <div class="competencies-grid">
+                <div class="competency-item">
+                    <h4>Cloud & Virtualization</h4>
+                    <p>AWS, Azure, GCP, VMware vSphere/vSAN, Hyper-V, Cisco UCS X-Series. Expertise in hybrid architectures, landing zones, and zero-downtime migrations.</p>
+                </div>
+                <div class="competency-item">
+                    <h4>Cybersecurity & IAM</h4>
+                    <p>Okta, Entra ID, Duo, CrowdStrike, Palo Alto, SentinelOne. SSO, MFA enforcement, zero-trust policies, and defense-in-depth strategies.</p>
+                </div>
+                <div class="competency-item">
+                    <h4>Networking & Firewall</h4>
+                    <p>Cisco enterprise switching, Meraki multi-site deployments, SonicWall NGFW. VLANs, OSPF, BGP, QoS, IPS, SSL-VPN, and SD-WAN.</p>
+                </div>
+                <div class="competency-item">
+                    <h4>Data Protection & DR</h4>
+                    <p>Veeam, Druva, Cohesity, Acronis. 3-2-1-1 coverage, immutable storage, WAN-accelerated replication, and quarterly DR testing.</p>
+                </div>
+                <div class="competency-item">
+                    <h4>Endpoint & Device Management</h4>
+                    <p>Intune, Jamf Pro across Windows, macOS, iOS, Android. Zero-touch enrollment, compliance policies, and Conditional Access.</p>
+                </div>
+                <div class="competency-item">
+                    <h4>IT Leadership & Operations</h4>
+                    <p>ITIL-aligned change management, team building, knowledge base design, incident response, and strategic cost optimization.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Highlights Section -->
+    <section class="highlights" id="highlights">
+        <div class="container">
+            <h2 class="section-title">Key Achievements</h2>
+            <div class="highlights-grid">
+                <div class="highlight-card">
+                    <h4>Cloud Migrations</h4>
+                    <p>35% infrastructure cost reduction and zero data loss in on-premises to AWS migration within 6 weeks.</p>
+                </div>
+                <div class="highlight-card">
+                    <h4>Security Posture</h4>
+                    <p>CrowdStrike Falcon deployment across 2,200+ endpoints with MTTD under 8 minutes.</p>
+                </div>
+                <div class="highlight-card">
+                    <h4>Business Continuity</h4>
+                    <p>Enterprise backup infrastructure overhaul reducing recovery time from 4 hours to 22 minutes.</p>
+                </div>
+                <div class="highlight-card">
+                    <h4>Virtualization</h4>
+                    <p>vSphere 8 & vSAN ESA deployment with 2.1x performance increase and zero-downtime upgrades.</p>
+                </div>
+                <div class="highlight-card">
+                    <h4>Team Leadership</h4>
+                    <p>IT team rebuild increasing MTTR by 55% and Team NPS from 28 to 71 within 6 months.</p>
+                </div>
+                <div class="highlight-card">
+                    <h4>Incident Management</h4>
+                    <p>P1 domain-wide authentication outage resolved in 4.5 hours with sub-3-minute detection post-fix.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2>Let's Connect</h2>
+            <p>Ready to drive your infrastructure forward with 15+ years of proven expertise.</p>
+            <div class="contact-info">
+                <div class="contact-info-item">
+                    <strong>Location</strong>
+                    <span>New Jersey, USA · Green Card</span>
+                </div>
+                <div class="contact-info-item">
+                    <strong>Availability</strong>
+                    <span>Onsite, Hybrid, or Remote (NJ/NY)</span>
+                </div>
+            </div>
+            <div class="cta-buttons">
+                <a href="https://calendar.app.google/1Qoiy76WvWXRWqL18" class="btn-light" target="_blank">Schedule a Meeting</a>
+                <a href="Jigar_Acharya__IT_Infrastructure___Systems_Engineer__Executive_Edition.pdf" class="btn-light" download>Download Portfolio</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Jigar Acharya. All rights reserved. | <a href="https://github.com" style="color: #778da9; text-decoration: none;">GitHub</a></p>
+    </footer>
+</body>
+</html>
