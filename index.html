@@ -1,497 +1,766 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jigar Acharya - IT Infrastructure & Systems Engineer</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jigar Acharya — Infrastructure Engineer & Consultant</title>
+<meta name="description" content="Infrastructure Engineer & Consultant with 15+ years delivering enterprise technology across identity, endpoint, cloud, virtualization, backup and networking. Based in NJ/NY. Open to consulting & contract.">
+<meta property="og:title" content="Jigar Acharya — Infrastructure Engineer & Consultant">
+<meta property="og:description" content="15+ years enterprise IT infrastructure. CCNP · MCSE · VCP. Based in NJ/NY. Open to contract & consulting.">
+<meta property="og:type" content="website">
+<style>
+  :root{
+    --bg:#141514;
+    --bg-elev:#1b1c1b;
+    --bg-card:#1f211f;
+    --line:#2c2e2c;
+    --line-soft:#242624;
+    --text:#eef1ee;
+    --muted:#9aa19a;
+    --muted-2:#6f766f;
+    --accent:#2ee6a6;
+    --accent-dim:#1f9d74;
+    --accent-glow:rgba(46,230,166,.15);
+    --amber:#ffbd2e;
+    --radius:14px;
+    --maxw:1140px;
+    --font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    --mono:'SFMono-Regular',ui-monospace,'JetBrains Mono',Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--accent);color:#0a0a0a}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+  .mono{font-family:var(--mono);letter-spacing:.02em}
+  .accent{color:var(--accent)}
 
-        body {
-            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            color: #415a77;
-            line-height: 1.6;
-        }
+  /* NAV */
+  header.nav{position:sticky;top:0;z-index:50;background:rgba(20,21,20,.82);backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:border-color .3s}
+  header.nav.scrolled{border-bottom:1px solid var(--line)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .brand{display:flex;align-items:center;gap:12px}
+  .brand .logo{width:38px;height:38px;border-radius:9px;display:grid;place-items:center;background:linear-gradient(145deg,var(--accent),var(--accent-dim));color:#0b1410;font-weight:800;font-size:15px;box-shadow:0 0 24px var(--accent-glow)}
+  .brand b{font-weight:700;font-size:15px;display:block;line-height:1.1}
+  .brand small{color:var(--muted-2);font-family:var(--mono);font-size:11.5px}
+  nav ul{display:flex;gap:26px;list-style:none;align-items:center}
+  nav a{color:var(--muted);font-size:14px;font-weight:500;font-family:var(--mono);transition:color .2s;position:relative}
+  nav a:hover,nav a.active{color:var(--text)}
+  nav a.link::after{content:"";position:absolute;left:0;bottom:-6px;height:2px;width:0;background:var(--accent);transition:width .25s}
+  nav a.link:hover::after,nav a.link.active::after{width:100%}
+  .nav-cta{background:linear-gradient(145deg,var(--accent),var(--accent-dim));color:#0b1410 !important;padding:10px 18px;border-radius:999px;font-weight:700;box-shadow:0 6px 24px var(--accent-glow);transition:transform .2s}
+  .nav-cta:hover{transform:translateY(-2px)}
+  .menu-btn{display:none;background:none;border:1px solid var(--line);color:var(--text);border-radius:8px;padding:8px 11px;cursor:pointer;font-size:16px}
 
-        /* Navigation */
-        nav {
-            background: #ffffff;
-            box-shadow: 0 2px 8px rgba(27, 38, 59, 0.08);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
+  /* BUTTONS */
+  .btn{display:inline-flex;align-items:center;gap:9px;padding:13px 24px;border-radius:999px;font-weight:700;font-size:14.5px;transition:transform .2s,box-shadow .2s,border-color .2s,color .2s;cursor:pointer;border:none}
+  .btn-primary{background:linear-gradient(145deg,var(--accent),var(--accent-dim));color:#0b1410;box-shadow:0 8px 30px var(--accent-glow)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 36px var(--accent-glow)}
+  .btn-ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
 
-        nav .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+  /* HERO */
+  .hero{position:relative;padding:92px 0 84px}
+  .hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:56px;align-items:center}
+  .eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:12.5px;color:var(--accent);border:1px solid var(--line);background:var(--bg-elev);padding:7px 14px;border-radius:999px;margin-bottom:24px}
+  .eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+  .role-line{font-family:var(--mono);font-size:13.5px;color:var(--muted);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+  h1.head{font-size:clamp(38px,5.6vw,62px);line-height:1.05;font-weight:800;letter-spacing:-.025em;margin-bottom:22px}
+  .lead{color:var(--muted);font-size:17.5px;max-width:560px;margin-bottom:32px}
+  .hero-actions{display:flex;gap:13px;flex-wrap:wrap}
+  .hero-status{margin-top:30px;font-family:var(--mono);font-size:12px;color:var(--muted-2);display:flex;align-items:center;gap:9px}
+  .hero-status .g{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent)}
 
-        nav .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #1b263b;
-            font-family: 'Playfair Display', serif;
-        }
+  /* profile + terminal */
+  .hero-right{display:flex;flex-direction:column;gap:18px}
+  .profile-card{background:var(--bg-card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 24px 60px rgba(0,0,0,.45);overflow:hidden}
+  .profile-photo{position:relative;aspect-ratio:1/1;overflow:hidden}
+  .profile-photo img{width:100%;height:100%;object-fit:cover;display:block}
+  .profile-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(20,21,20,.9))}
+  .profile-info{position:absolute;left:0;right:0;bottom:0;padding:18px 20px;z-index:2}
+  .profile-info b{font-size:18px;display:block}
+  .profile-info span{font-family:var(--mono);font-size:12px;color:var(--accent)}
+  .profile-loc{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:2px}
+  .profile-actions{display:flex;gap:8px;padding:14px 16px;border-top:1px solid var(--line);background:var(--bg-elev)}
+  .pa{flex:1;text-align:center;font-family:var(--mono);font-size:11.5px;font-weight:600;color:var(--muted);border:1px solid var(--line);border-radius:8px;padding:9px 6px;transition:color .2s,border-color .2s}
+  .pa:hover{color:var(--accent);border-color:var(--accent-dim)}
+  .terminal{background:var(--bg-card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:0 24px 60px rgba(0,0,0,.45);overflow:hidden}
+  .term-bar{display:flex;align-items:center;gap:8px;padding:13px 16px;border-bottom:1px solid var(--line);background:var(--bg-elev)}
+  .term-bar .d{width:11px;height:11px;border-radius:50%}
+  .d.r{background:#ff5f56}.d.y{background:#ffbd2e}.d.g{background:#27c93f}
+  .term-title{margin-left:8px;font-family:var(--mono);font-size:12.5px;color:var(--muted-2)}
+  .term-body{padding:20px 20px 24px;font-family:var(--mono);font-size:13.5px;line-height:1.95}
+  .term-body .c{color:var(--muted-2)}.term-body .k{color:var(--accent)}.term-body .v{color:var(--text)}.term-body .p{color:var(--accent)}
+  .caret{display:inline-block;width:8px;height:15px;background:var(--accent);vertical-align:-2px;animation:blink 1.1s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
 
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
+  /* STATS */
+  .stats{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg-elev)}
+  .stats-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+  .stat{padding:32px 24px;text-align:center;border-right:1px solid var(--line)}
+  .stat:last-child{border-right:none}
+  .stat .num{font-size:34px;font-weight:800;letter-spacing:-.01em}
+  .stat .num .accent{background:linear-gradient(145deg,var(--accent),#7ff0cf);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .stat .lbl{color:var(--muted);font-size:13px;margin-top:6px}
 
-        nav a {
-            text-decoration: none;
-            color: #415a77;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
+  /* SECTION */
+  section.block{padding:88px 0}
+  .sec-head{margin-bottom:48px;max-width:760px}
+  .sec-tag{font-family:var(--mono);font-size:12.5px;color:var(--accent);letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+  .sec-tag::before{content:"";width:26px;height:1px;background:var(--accent)}
+  .sec-title{font-size:clamp(27px,3.8vw,38px);font-weight:800;letter-spacing:-.02em}
+  .sec-sub{color:var(--muted);margin-top:16px;font-size:16px}
 
-        nav a:hover {
-            color: #0d1b2a;
-        }
+  /* SPECIALISATIONS */
+  .spec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .spec-card{background:var(--bg-card);border:1px solid var(--line);border-radius:var(--radius);padding:28px 24px;transition:transform .25s,border-color .25s;position:relative;overflow:hidden}
+  .spec-card::before{content:"";position:absolute;left:0;top:0;height:3px;width:0;background:var(--accent);transition:width .3s}
+  .spec-card:hover{transform:translateY(-4px);border-color:var(--accent-dim)}
+  .spec-card:hover::before{width:100%}
+  .spec-num{font-family:var(--mono);font-size:12.5px;color:var(--muted-2);margin-bottom:14px}
+  .spec-ico{width:42px;height:42px;border-radius:10px;display:grid;place-items:center;background:var(--accent-glow);border:1px solid var(--accent-dim);color:var(--accent);margin-bottom:16px}
+  .spec-ico svg{width:21px;height:21px}
+  .spec-card h3{font-size:17px;margin-bottom:11px}
+  .spec-card p{color:var(--muted);font-size:14.5px;margin-bottom:16px}
+  .tags{display:flex;flex-wrap:wrap;gap:7px}
+  .tag{font-family:var(--mono);font-size:11.5px;color:var(--muted);background:var(--bg-elev);border:1px solid var(--line);border-radius:7px;padding:4px 9px;transition:color .2s,border-color .2s}
+  .tag:hover{color:var(--accent);border-color:var(--accent-dim)}
 
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            padding: 6rem 2rem;
-            text-align: center;
-        }
+  /* CASE STUDIES */
+  .cases{display:flex;flex-direction:column;gap:24px}
+  .case{background:var(--bg-card);border:1px solid var(--line);border-radius:16px;overflow:hidden;transition:border-color .25s}
+  .case:hover{border-color:var(--accent-dim)}
+  .case-head{display:flex;align-items:flex-start;gap:20px;padding:28px 30px;border-bottom:1px solid var(--line-soft);flex-wrap:wrap}
+  .case-badge{width:52px;height:52px;border-radius:12px;flex:none;display:grid;place-items:center;font-family:var(--mono);font-weight:800;font-size:16px;background:var(--accent-glow);border:1px solid var(--accent-dim);color:var(--accent)}
+  .case-h-txt{flex:1;min-width:220px}
+  .case-cat{font-family:var(--mono);font-size:12px;color:var(--muted-2);margin-bottom:6px}
+  .case-title{font-size:20px;font-weight:800;letter-spacing:-.01em;margin-bottom:8px}
+  .case-scope{font-family:var(--mono);font-size:12px;color:var(--muted)}
+  .case-status{font-family:var(--mono);font-size:11px;font-weight:700;padding:6px 12px;border-radius:999px;white-space:nowrap;align-self:flex-start}
+  .st-done{background:rgba(46,230,166,.12);color:var(--accent);border:1px solid var(--accent-dim)}
+  .st-ongoing{background:rgba(255,189,46,.12);color:var(--amber);border:1px solid rgba(255,189,46,.4)}
+  .case-body{padding:26px 30px}
+  .case-body>p{color:var(--muted);font-size:15px;margin-bottom:22px}
+  .results{display:grid;grid-template-columns:repeat(2,1fr);gap:12px 26px;margin-bottom:22px}
+  .result{display:flex;gap:11px;font-size:14.5px;color:var(--text)}
+  .result .chk{color:var(--accent);flex:none;margin-top:3px}
+  .result .chk svg{width:16px;height:16px}
+  .case .tags{padding-top:2px}
 
-        .hero .container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
+  /* EXPERIENCE */
+  .timeline{position:relative;padding-left:34px}
+  .timeline::before{content:"";position:absolute;left:9px;top:6px;bottom:6px;width:2px;background:var(--line)}
+  .job{position:relative;padding-bottom:34px}
+  .job:last-child{padding-bottom:0}
+  .job::before{content:"";position:absolute;left:-33px;top:5px;width:20px;height:20px;border-radius:50%;background:var(--bg);border:2px solid var(--accent-dim);display:grid}
+  .job::after{content:"";position:absolute;left:-27px;top:11px;width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent)}
+  .job-top{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:baseline;margin-bottom:4px}
+  .job-title{font-size:17.5px;font-weight:700}
+  .job-meta{font-family:var(--mono);font-size:12.5px;color:var(--muted-2);white-space:nowrap}
+  .job-co{color:var(--accent);font-size:14px;font-weight:600;margin-bottom:12px}
+  .job-co span{color:var(--muted-2);font-weight:400}
+  .job ul{list-style:none;margin-bottom:12px}
+  .job li{color:var(--muted);font-size:14.5px;padding-left:20px;position:relative;margin-bottom:6px}
+  .job li::before{content:"▸";position:absolute;left:0;color:var(--accent-dim)}
 
-        .hero h1 {
-            font-size: 3.5rem;
-            font-family: 'Playfair Display', serif;
-            color: #1b263b;
-            margin-bottom: 1rem;
-            line-height: 1.2;
-        }
+  /* CERTS */
+  .cert-groups{display:flex;flex-direction:column;gap:12px}
+  details.cert-group{background:var(--bg-card);border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:border-color .2s}
+  details.cert-group[open]{border-color:var(--accent-dim)}
+  details.cert-group summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:14px;padding:20px 24px;user-select:none}
+  details.cert-group summary::-webkit-details-marker{display:none}
+  .cg-badge{width:42px;height:42px;border-radius:10px;flex:none;display:grid;place-items:center;background:var(--accent-glow);border:1px solid var(--accent-dim);color:var(--accent);font-weight:800;font-family:var(--mono);font-size:13px}
+  .cg-name{font-size:16.5px;font-weight:700;flex:1}
+  .cg-count{font-family:var(--mono);font-size:12.5px;color:var(--muted)}
+  .cg-chev{color:var(--muted-2);transition:transform .25s;flex:none}
+  details.cert-group[open] .cg-chev{transform:rotate(180deg)}
+  .cg-body{padding:4px 24px 22px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .cert-item{background:var(--bg-elev);border:1px solid var(--line);border-radius:11px;padding:16px 18px;border-left:3px solid var(--accent-dim)}
+  .cert-item.expiring{border-left-color:var(--amber)}
+  .ci-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:8px}
+  .ci-name{font-size:14.5px;font-weight:600;line-height:1.35}
+  .ci-status{font-family:var(--mono);font-size:10.5px;font-weight:700;padding:4px 9px;border-radius:999px;white-space:nowrap;flex:none}
+  .ci-active{background:rgba(46,230,166,.12);color:var(--accent);border:1px solid var(--accent-dim)}
+  .ci-exp{background:rgba(255,189,46,.12);color:var(--amber);border:1px solid rgba(255,189,46,.4)}
+  .ci-meta{font-family:var(--mono);font-size:11.5px;color:var(--muted-2);margin-bottom:10px}
+  .ci-tags{display:flex;flex-wrap:wrap;gap:6px}
+  .ci-tags .tag{font-size:11px;padding:3px 8px}
+  @media(max-width:760px){.cg-body{grid-template-columns:1fr}}
 
-        .hero p {
-            font-size: 1.25rem;
-            color: #778da9;
-            margin-bottom: 2rem;
-        }
+  /* CONTACT */
+  .contact{background:var(--bg-elev);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .contact-inner{display:grid;grid-template-columns:1fr .85fr;gap:52px;align-items:center}
+  .contact h2{font-size:clamp(28px,4.2vw,42px);font-weight:800;letter-spacing:-.02em;line-height:1.1;margin-bottom:18px}
+  .contact p{color:var(--muted);font-size:16.5px;max-width:440px;margin-bottom:28px}
+  .contact-list{display:flex;flex-direction:column;gap:12px}
+  .crow{display:flex;align-items:center;gap:15px;background:var(--bg-card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;transition:border-color .2s,transform .2s}
+  .crow:hover{border-color:var(--accent-dim);transform:translateX(4px)}
+  .crow .ci{width:42px;height:42px;border-radius:10px;flex:none;display:grid;place-items:center;background:var(--accent-glow);border:1px solid var(--accent-dim);color:var(--accent)}
+  .crow .ci svg{width:19px;height:19px}
+  .crow .cl{font-size:12px;color:var(--muted-2);font-family:var(--mono)}
+  .crow .cv{font-size:15px;font-weight:600}
 
-        .hero .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
+  footer{padding:32px 0;color:var(--muted-2);font-size:13px}
+  .foot-inner{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+  .foot-links{display:flex;gap:18px}
+  .foot-links a{color:var(--muted);font-family:var(--mono);font-size:12.5px;transition:color .2s}
+  .foot-links a:hover{color:var(--accent)}
 
-        .btn {
-            padding: 0.875rem 2rem;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-        }
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
 
-        .btn-primary {
-            background: #1b263b;
-            color: #ffffff;
-        }
-
-        .btn-primary:hover {
-            background: #0d1b2a;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(27, 38, 59, 0.2);
-        }
-
-        .btn-secondary {
-            background: #ffffff;
-            color: #1b263b;
-            border: 2px solid #1b263b;
-        }
-
-        .btn-secondary:hover {
-            background: #1b263b;
-            color: #ffffff;
-        }
-
-        /* Overview Section */
-        .overview {
-            background: #ffffff;
-            padding: 4rem 2rem;
-        }
-
-        .overview .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            font-family: 'Playfair Display', serif;
-            color: #1b263b;
-            margin-bottom: 3rem;
-            text-align: center;
-        }
-
-        .metrics {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .metric-card {
-            background: #f8f9fa;
-            padding: 2rem;
-            border-radius: 4px;
-            text-align: center;
-            border-top: 3px solid #1b263b;
-        }
-
-        .metric-card h3 {
-            font-size: 2.5rem;
-            color: #1b263b;
-            margin-bottom: 0.5rem;
-        }
-
-        .metric-card p {
-            color: #778da9;
-            font-weight: 500;
-        }
-
-        /* Competencies Section */
-        .competencies {
-            background: #f8f9fa;
-            padding: 4rem 2rem;
-        }
-
-        .competencies .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .competencies-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .competency-item {
-            background: #ffffff;
-            padding: 2rem;
-            border-radius: 4px;
-            box-shadow: 0 2px 8px rgba(27, 38, 59, 0.06);
-        }
-
-        .competency-item h4 {
-            font-size: 1.25rem;
-            color: #1b263b;
-            margin-bottom: 1rem;
-        }
-
-        .competency-item p {
-            color: #415a77;
-            font-size: 0.95rem;
-        }
-
-        /* Highlights Section */
-        .highlights {
-            background: #ffffff;
-            padding: 4rem 2rem;
-        }
-
-        .highlights .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .highlights-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .highlight-card {
-            background: #f8f9fa;
-            padding: 2rem;
-            border-radius: 4px;
-            border-left: 4px solid #1b263b;
-        }
-
-        .highlight-card h4 {
-            color: #1b263b;
-            margin-bottom: 0.5rem;
-            font-size: 1.1rem;
-        }
-
-        .highlight-card p {
-            color: #778da9;
-            font-size: 0.9rem;
-        }
-
-        /* Contact Section */
-        .contact {
-            background: linear-gradient(135deg, #1b263b 0%, #0d1b2a 100%);
-            color: #ffffff;
-            padding: 4rem 2rem;
-            text-align: center;
-        }
-
-        .contact .container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .contact h2 {
-            font-size: 2.5rem;
-            font-family: 'Playfair Display', serif;
-            margin-bottom: 1rem;
-        }
-
-        .contact p {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        .contact-info {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-            margin-bottom: 2rem;
-        }
-
-        .contact-info-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .contact-info-item strong {
-            display: block;
-            margin-bottom: 0.5rem;
-            opacity: 0.8;
-        }
-
-        .contact-info-item span {
-            font-size: 1rem;
-        }
-
-        .contact .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn-light {
-            background: #ffffff;
-            color: #1b263b;
-            padding: 0.875rem 2rem;
-            border-radius: 4px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            display: inline-block;
-        }
-
-        .btn-light:hover {
-            background: #e9ecef;
-            transform: translateY(-2px);
-        }
-
-        /* Footer */
-        footer {
-            background: #0d1b2a;
-            color: #778da9;
-            text-align: center;
-            padding: 2rem;
-            font-size: 0.9rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .section-title {
-                font-size: 1.75rem;
-            }
-
-            nav ul {
-                gap: 1rem;
-                font-size: 0.9rem;
-            }
-
-            .hero .cta-buttons {
-                flex-direction: column;
-            }
-
-            .btn {
-                width: 100%;
-            }
-        }
-    </style>
+  @media(max-width:960px){
+    .hero-grid{grid-template-columns:1fr;gap:42px}
+    .terminal{max-width:520px}
+    .spec-grid{grid-template-columns:repeat(2,1fr)}
+    .contact-inner{grid-template-columns:1fr;gap:34px}
+  }
+  @media(max-width:760px){
+    nav ul{display:none}
+    .menu-btn{display:inline-block}
+    nav.open ul{display:flex;flex-direction:column;align-items:flex-start;position:absolute;top:72px;left:0;right:0;background:var(--bg-elev);border-bottom:1px solid var(--line);padding:20px 28px;gap:16px}
+    .stats-grid{grid-template-columns:repeat(2,1fr)}
+    .stat:nth-child(-n+2){border-bottom:1px solid var(--line)}
+    .stat:nth-child(2){border-right:none}
+    .spec-grid{grid-template-columns:1fr}
+    .results{grid-template-columns:1fr}
+    .case-head{padding:22px 20px}
+    .case-body{padding:22px 20px}
+  }
+</style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div class="container">
-            <div class="logo">Jigar Acharya</div>
-            <ul>
-                <li><a href="#overview">Overview</a></li>
-                <li><a href="#competencies">Competencies</a></li>
-                <li><a href="#highlights">Highlights</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#home">
+      <div class="logo">JA</div>
+      <div><b>Jigar Acharya</b><small>Infrastructure Engineer &amp; Consultant</small></div>
+    </a>
+    <nav id="navmenu">
+      <ul>
+        <li><a class="link active" href="#specialisations">specialisations</a></li>
+        <li><a class="link" href="#case-studies">case_studies</a></li>
+        <li><a class="link" href="#experience">experience</a></li>
+        <li><a class="link" href="#certifications">certifications</a></li>
+        <li><a class="nav-cta" href="https://calendar.app.google/1Qoiy76WvWXRWqL18" target="_blank" rel="noopener">schedule call →</a></li>
+      </ul>
     </nav>
+    <button class="menu-btn" id="menuBtn" aria-label="Menu">☰</button>
+  </div>
+</header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h1>IT Infrastructure & Systems Engineer</h1>
-            <p>15+ Years of Driving Secure, Scalable, and Resilient IT Environments</p>
-            <div class="cta-buttons">
-                <a href="Jigar_Acharya__IT_Infrastructure___Systems_Engineer__Executive_Edition.pdf" class="btn btn-primary" download>Download Portfolio (PDF)</a>
-                <a href="https://calendar.app.google/1Qoiy76WvWXRWqL18" class="btn btn-secondary" target="_blank">Schedule a Meeting</a>
-            </div>
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="wrap hero-grid">
+    <div class="reveal">
+      <span class="eyebrow"><span class="dot"></span> NJ/NY · Green Card · Open to contract &amp; consulting</span>
+      <div class="role-line mono">⚙ Infrastructure Engineer &amp; Consultant</div>
+      <h1 class="head">Infrastructure that doesn't surprise anyone.</h1>
+      <p class="lead">15+ years delivering enterprise technology across identity, virtualization, cloud, backup, and networking — for organisations where downtime is not an option.</p>
+      <div class="hero-actions">
+        <a href="#case-studies" class="btn btn-primary">See my work →</a>
+        <a href="https://acharyajigar-ops.github.io/jigaracharya.github.io/Jigar_Acharya_CV.pdf" class="btn btn-ghost" target="_blank" rel="noopener">↓ Download CV</a>
+        <a href="https://calendar.app.google/1Qoiy76WvWXRWqL18" class="btn btn-ghost" target="_blank" rel="noopener">Schedule a call</a>
+      </div>
+      <div class="hero-status"><span class="g"></span> STATUS.LOG — ALL SYSTEMS OPERATIONAL</div>
+    </div>
+
+    <div class="hero-right reveal" style="transition-delay:.1s">
+    <div class="profile-card">
+      <div class="profile-photo">
+        <img src="profile.jpg" alt="Jigar Acharya">
+        <div class="profile-info">
+          <b>Jigar Acharya</b>
+          <span>Infrastructure Engineer &amp; Consultant</span>
+          <div class="profile-loc">Parlin, NJ · CCNP · MCSE · VCP</div>
         </div>
-    </section>
+      </div>
+      <div class="profile-actions">
+        <a class="pa" href="https://calendar.app.google/1Qoiy76WvWXRWqL18" target="_blank" rel="noopener">CAL Meeting</a>
+        <a class="pa" href="https://www.linkedin.com/in/jigar-acharya-b2481024" target="_blank" rel="noopener">in LinkedIn</a>
+        <a class="pa" href="mailto:acharyajigar@gmail.com">@ Email</a>
+      </div>
+    </div>
+    <div class="terminal">
+      <div class="term-bar">
+        <span class="d r"></span><span class="d y"></span><span class="d g"></span>
+        <span class="term-title">jigar@infra ~ profile</span>
+      </div>
+      <div class="term-body">
+        <div><span class="p">$</span> <span class="v">whoami</span></div>
+        <div><span class="k">role</span>&nbsp;&nbsp;&nbsp;<span class="c">→</span> <span class="v">Infrastructure Engineer &amp; Consultant</span></div>
+        <div><span class="k">at</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="c">→</span> <span class="v">WPG Consulting · 100+ clients</span></div>
+        <div><span class="k">based</span>&nbsp;&nbsp;<span class="c">→</span> <span class="v">Parlin, NJ · NJ/NY</span></div>
+        <div><span class="k">certs</span>&nbsp;&nbsp;<span class="c">→</span> <span class="v">CCNP · MCSE · VCP (+16)</span></div>
+        <div><span class="k">focus</span>&nbsp;&nbsp;<span class="c">→</span> <span class="v">Zero Trust · Cloud · DR</span></div>
+        <div style="margin-top:8px"><span class="p">$</span> <span class="v">uptime</span> <span class="c">→</span> <span class="accent">not-your-problem</span> <span class="caret"></span></div>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Overview Section -->
-    <section class="overview" id="overview">
-        <div class="container">
-            <h2 class="section-title">Professional Overview</h2>
-            <p style="text-align: center; font-size: 1.1rem; margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">
-                Over 15 years of expertise in designing, implementing, and managing complex IT solutions across cloud, security, virtualization, and networking. Proven ability to deliver measurable improvements in performance, security, and operational efficiency through strategic leadership and cutting-edge technology adoption.
-            </p>
-            <div class="metrics">
-                <div class="metric-card">
-                    <h3>30+</h3>
-                    <p>Platforms & Technologies</p>
-                </div>
-                <div class="metric-card">
-                    <h3>54+</h3>
-                    <p>Projects Delivered</p>
-                </div>
-                <div class="metric-card">
-                    <h3>13+</h3>
-                    <p>Industry Certifications</p>
-                </div>
-                <div class="metric-card">
-                    <h3>15+</h3>
-                    <p>Years of Experience</p>
-                </div>
-            </div>
+<!-- STATS -->
+<div class="stats">
+  <div class="wrap stats-grid">
+    <div class="stat reveal"><div class="num"><span class="accent">15+</span></div><div class="lbl">Years exp.</div></div>
+    <div class="stat reveal" style="transition-delay:.06s"><div class="num"><span class="accent">54+</span></div><div class="lbl">Projects</div></div>
+    <div class="stat reveal" style="transition-delay:.12s"><div class="num"><span class="accent">30</span></div><div class="lbl">Platforms</div></div>
+    <div class="stat reveal" style="transition-delay:.18s"><div class="num"><span class="accent">19</span></div><div class="lbl">Certifications</div></div>
+  </div>
+</div>
+
+<!-- SPECIALISATIONS -->
+<section class="block" id="specialisations">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-tag">What I do</div>
+      <h2 class="sec-title">Six areas. Deep in each.</h2>
+      <p class="sec-sub">Not a tool list — an engineering shape. Each area represents years of real delivery, not surface familiarity.</p>
+    </div>
+    <div class="spec-grid">
+
+      <div class="spec-card reveal">
+        <div class="spec-num">[01]</div>
+        <div class="spec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l7 4v6c0 5-3.5 8-7 10-3.5-2-7-5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3>Identity &amp; Zero Trust</h3>
+        <p>SSO, MFA, and SCIM provisioning that ties to your HR system. Zero Trust policies that hold up when someone tests them. Unmanaged devices don't get in.</p>
+        <div class="tags"><span class="tag">Okta</span><span class="tag">Entra ID</span><span class="tag">Duo</span><span class="tag">SAML</span><span class="tag">SCIM</span></div>
+      </div>
+
+      <div class="spec-card reveal" style="transition-delay:.05s">
+        <div class="spec-num">[02]</div>
+        <div class="spec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.5 19a4.5 4.5 0 0 0 .5-9 6 6 0 0 0-11.6-1.5A4 4 0 0 0 6.5 19z"/></svg></div>
+        <h3>Cloud &amp; Hybrid Infrastructure</h3>
+        <p>Landing zones built to govern themselves. Hybrid architectures between on-prem and Azure, GCP, or AWS. Migrations that finish on time and don't lose data.</p>
+        <div class="tags"><span class="tag">Azure</span><span class="tag">GCP</span><span class="tag">AWS</span><span class="tag">Terraform</span><span class="tag">Sentinel</span></div>
+      </div>
+
+      <div class="spec-card reveal" style="transition-delay:.1s">
+        <div class="spec-num">[03]</div>
+        <div class="spec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></div>
+        <h3>Backup &amp; Disaster Recovery</h3>
+        <p>3-2-1-1 coverage, immutable storage, quarterly DR tests that prove recovery actually works — not just that the jobs are green. Built around Veeam, Druva, and Cohesity.</p>
+        <div class="tags"><span class="tag">Veeam</span><span class="tag">Druva</span><span class="tag">Cohesity</span><span class="tag">Acronis</span></div>
+      </div>
+
+      <div class="spec-card reveal">
+        <div class="spec-num">[04]</div>
+        <div class="spec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></div>
+        <h3>Endpoint &amp; Device Management</h3>
+        <p>Every device in a known state. Zero-touch enrollment, compliance policies tied to Conditional Access, and app deployment that doesn't require a helpdesk ticket.</p>
+        <div class="tags"><span class="tag">Intune</span><span class="tag">Jamf Pro</span><span class="tag">Autopilot</span><span class="tag">ADE</span></div>
+      </div>
+
+      <div class="spec-card reveal" style="transition-delay:.05s">
+        <div class="spec-num">[05]</div>
+        <div class="spec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="6" rx="1.5"/><rect x="3" y="14" width="18" height="6" rx="1.5"/><path d="M7 7h.01M7 17h.01"/></svg></div>
+        <h3>Virtualization &amp; Server Infrastructure</h3>
+        <p>VMware vSphere/vSAN, Hyper-V failover clusters, Cisco UCS X-Series. Upgrades with zero downtime, VDI with Horizon, and migrations between platforms without drama.</p>
+        <div class="tags"><span class="tag">VMware</span><span class="tag">vSAN</span><span class="tag">Hyper-V</span><span class="tag">Cisco UCS</span></div>
+      </div>
+
+      <div class="spec-card reveal" style="transition-delay:.1s">
+        <div class="spec-num">[06]</div>
+        <div class="spec-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="12" cy="18" r="2.5"/><path d="M6 8.5v3a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-3M12 13.5v2"/></svg></div>
+        <h3>Networking &amp; Security</h3>
+        <p>Cisco campus and routing, Meraki multi-site SD-WAN, Palo Alto NGFW. VLANs, OSPF, BGP, 802.1X NAC, IPS — built correctly, or diagnosed and fixed when it wasn't.</p>
+        <div class="tags"><span class="tag">Cisco CCNP</span><span class="tag">Meraki</span><span class="tag">Palo Alto</span><span class="tag">802.1X</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDIES -->
+<section class="block" id="case-studies" style="background:var(--bg-elev);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-tag">Selected work</div>
+      <h2 class="sec-title">Three projects that show breadth.</h2>
+      <p class="sec-sub">Chosen because together they span identity, cloud security, and data protection — the three areas where the stakes are highest.</p>
+    </div>
+
+    <div class="cases">
+
+      <!-- Case 1 -->
+      <div class="case reveal">
+        <div class="case-head">
+          <div class="case-badge">OK</div>
+          <div class="case-h-txt">
+            <div class="case-cat">Identity &amp; Access Management · Okta</div>
+            <div class="case-title">Enterprise SSO rollout — from 3 days to 4 hours</div>
+            <div class="case-scope">SCOPE: 1,200 users · 40+ applications · Hybrid on-prem and SaaS</div>
+          </div>
+          <span class="case-status st-done">✓ COMPLETED</span>
         </div>
-    </section>
-
-    <!-- Competencies Section -->
-    <section class="competencies" id="competencies">
-        <div class="container">
-            <h2 class="section-title">Core Competencies</h2>
-            <div class="competencies-grid">
-                <div class="competency-item">
-                    <h4>Cloud & Virtualization</h4>
-                    <p>AWS, Azure, GCP, VMware vSphere/vSAN, Hyper-V, Cisco UCS X-Series. Expertise in hybrid architectures, landing zones, and zero-downtime migrations.</p>
-                </div>
-                <div class="competency-item">
-                    <h4>Cybersecurity & IAM</h4>
-                    <p>Okta, Entra ID, Duo, CrowdStrike, Palo Alto, SentinelOne. SSO, MFA enforcement, zero-trust policies, and defense-in-depth strategies.</p>
-                </div>
-                <div class="competency-item">
-                    <h4>Networking & Firewall</h4>
-                    <p>Cisco enterprise switching, Meraki multi-site deployments, SonicWall NGFW. VLANs, OSPF, BGP, QoS, IPS, SSL-VPN, and SD-WAN.</p>
-                </div>
-                <div class="competency-item">
-                    <h4>Data Protection & DR</h4>
-                    <p>Veeam, Druva, Cohesity, Acronis. 3-2-1-1 coverage, immutable storage, WAN-accelerated replication, and quarterly DR testing.</p>
-                </div>
-                <div class="competency-item">
-                    <h4>Endpoint & Device Management</h4>
-                    <p>Intune, Jamf Pro across Windows, macOS, iOS, Android. Zero-touch enrollment, compliance policies, and Conditional Access.</p>
-                </div>
-                <div class="competency-item">
-                    <h4>IT Leadership & Operations</h4>
-                    <p>ITIL-aligned change management, team building, knowledge base design, incident response, and strategic cost optimization.</p>
-                </div>
-            </div>
+        <div class="case-body">
+          <p>The organisation had grown through acquisition and ended up with four separate identity providers, manual provisioning, and a helpdesk log full of password resets. The job was to collapse everything into a single Okta deployment — SSO across 40+ apps, SCIM provisioning wired to Workday, and adaptive MFA that worked without creating daily friction for 1,200 users. Existing on-prem AD FS had to stay live throughout the migration while each app was cut over individually.</p>
+          <div class="results">
+            <div class="result"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></span>Onboarding time cut from 3 days to 4 hours — provisioning now runs automatically from Workday</div>
+            <div class="result"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></span>100% MFA adoption across the organisation within the first rollout week</div>
+            <div class="result"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></span>Login-related helpdesk tickets reduced by 64%</div>
+            <div class="result"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></span>Zero Trust redesign blocked 99.8% of credential-stuffing attempts post-deployment</div>
+          </div>
+          <div class="tags"><span class="tag">Okta</span><span class="tag">SAML 2.0</span><span class="tag">SCIM</span><span class="tag">Workday</span><span class="tag">AD Connect</span><span class="tag">Adaptive MFA</span><span class="tag">CrowdStrike</span></div>
         </div>
-    </section>
+      </div>
 
-    <!-- Highlights Section -->
-    <section class="highlights" id="highlights">
-        <div class="container">
-            <h2 class="section-title">Key Achievements</h2>
-            <div class="highlights-grid">
-                <div class="highlight-card">
-                    <h4>Cloud Migrations</h4>
-                    <p>35% infrastructure cost reduction and zero data loss in on-premises to AWS migration within 6 weeks.</p>
-                </div>
-                <div class="highlight-card">
-                    <h4>Security Posture</h4>
-                    <p>CrowdStrike Falcon deployment across 2,200+ endpoints with MTTD under 8 minutes.</p>
-                </div>
-                <div class="highlight-card">
-                    <h4>Business Continuity</h4>
-                    <p>Enterprise backup infrastructure overhaul reducing recovery time from 4 hours to 22 minutes.</p>
-                </div>
-                <div class="highlight-card">
-                    <h4>Virtualization</h4>
-                    <p>vSphere 8 & vSAN ESA deployment with 2.1x performance increase and zero-downtime upgrades.</p>
-                </div>
-                <div class="highlight-card">
-                    <h4>Team Leadership</h4>
-                    <p>IT team rebuild increasing MTTR by 55% and Team NPS from 28 to 71 within 6 months.</p>
-                </div>
-                <div class="highlight-card">
-                    <h4>Incident Management</h4>
-                    <p>P1 domain-wide authentication outage resolved in 4.5 hours with sub-3-minute detection post-fix.</p>
-                </div>
-            </div>
+      <!-- Case 2 -->
+      <div class="case reveal">
+        <div class="case-head">
+          <div class="case-badge">AZ</div>
+          <div class="case-h-txt">
+            <div class="case-cat">Cloud Security · Microsoft Azure + Sentinel</div>
+            <div class="case-title">Azure security posture lifted from 42% to 87%</div>
+            <div class="case-scope">SCOPE: All Azure workloads · 2M+ events/day · Ongoing</div>
+          </div>
+          <span class="case-status st-ongoing">● ONGOING</span>
         </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <h2>Let's Connect</h2>
-            <p>Ready to drive your infrastructure forward with 15+ years of proven expertise.</p>
-            <div class="contact-info">
-                <div class="contact-info-item">
-                    <strong>Location</strong>
-                    <span>New Jersey, USA · Green Card</span>
-                </div>
-                <div class="contact-info-item">
-                    <strong>Availability</strong>
-                    <span>Onsite, Hybrid, or Remote (NJ/NY)</span>
-                </div>
-            </div>
-            <div class="cta-buttons">
-                <a href="https://calendar.app.google/1Qoiy76WvWXRWqL18" class="btn-light" target="_blank">Schedule a Meeting</a>
-                <a href="Jigar_Acharya__IT_Infrastructure___Systems_Engineer__Executive_Edition.pdf" class="btn-light" download>Download Portfolio</a>
-            </div>
+        <div class="case-body">
+          <p>The environment had grown faster than the security policies around it — public storage accounts, permissive NSGs, no centralised logging, and a Defender for Cloud Secure Score sitting at 42%. The work was to implement Microsoft Sentinel as the SIEM/SOAR backbone, build detection rules and automated playbooks, enforce Azure Policy across all subscriptions, and remediate the misconfigurations driving the low score — without disrupting the workloads already running.</p>
+          <div class="results">
+            <div class="result"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></span>Defender for Cloud Secure Score improved from 42% to 87% over 90 days</div>
+            <div class="result"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></span>Sentinel ingesting 2M+ events/day with automated triage — MTTD under 15 minutes</div>
+            <div class="result"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></span>Azure Policy enforcing compliance on 100% of subscriptions — zero drift</div>
+            <div class="result"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></span>Cloud misconfigurations reduced 78% in the first month</div>
+          </div>
+          <div class="tags"><span class="tag">Microsoft Sentinel</span><span class="tag">Defender for Cloud</span><span class="tag">Azure Policy</span><span class="tag">Log Analytics</span><span class="tag">KQL</span><span class="tag">Logic Apps</span><span class="tag">NSGs</span></div>
         </div>
-    </section>
+      </div>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2026 Jigar Acharya. All rights reserved. | <a href="https://github.com" style="color: #778da9; text-decoration: none;">GitHub</a></p>
-    </footer>
+      <!-- Case 3 -->
+      <div class="case reveal">
+        <div class="case-head">
+          <div class="case-badge">VB</div>
+          <div class="case-h-txt">
+            <div class="case-cat">Data Protection · Veeam Backup &amp; Replication</div>
+            <div class="case-title">Backup overhaul — RTO from 4 hours to 22 minutes</div>
+            <div class="case-scope">SCOPE: 320 VMs · 140TB data · Scale-out with immutable storage</div>
+          </div>
+          <span class="case-status st-done">✓ COMPLETED</span>
+        </div>
+        <div class="case-body">
+          <p>The existing Backup Exec environment was failing jobs nightly, had no offsite copy, no immutability, and a documented RTO of "around 4 hours." After a near-miss ransomware incident, the organisation needed a full rebuild. Veeam v12 was deployed with a scale-out backup repository, S3 object lock for immutability, WAN-accelerated offsite replication, and a SureBackup lab verification programme that runs automated recovery tests against all Tier-1 VMs every quarter.</p>
+          <div class="results">
+            <div class="result"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></span>Recovery time cut from 4 hours to 22 minutes — validated quarterly via SureBackup</div>
+            <div class="result"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></span>140TB protected with full 3-2-1-1 coverage — immutable copy on S3 Object Lock</div>
+            <div class="result"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></span>$95K storage savings through deduplication and scale-out tier architecture</div>
+            <div class="result"><span class="chk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg></span>100% recovery success rate across 8 quarterly DR tests since deployment</div>
+          </div>
+          <div class="tags"><span class="tag">Veeam v12</span><span class="tag">SOBR</span><span class="tag">S3 Object Lock</span><span class="tag">SureBackup</span><span class="tag">WAN Acceleration</span><span class="tag">Veeam ONE</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="block" id="experience">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-tag">Career history</div>
+      <h2 class="sec-title">Where the experience comes from.</h2>
+      <p class="sec-sub">15+ years across MSP consulting, managed services, and in-house tech lead roles — building infrastructure from the ground up and maintaining it through growth.</p>
+    </div>
+
+    <div class="timeline">
+
+      <div class="job reveal">
+        <div class="job-top"><div class="job-title">VP Engineering Operations</div><div class="job-meta">Jun 2019 – Present</div></div>
+        <div class="job-co">WPG Consulting, LLC. <span>· New Jersey, USA</span></div>
+        <p style="color:var(--muted);font-size:14.5px;margin-bottom:12px">MSP serving 100+ enterprise and mid-market clients across financial services, healthcare, and technology — delivering managed infrastructure, project delivery, and senior technical consulting.</p>
+        <ul>
+          <li>Own end-to-end project delivery across the client portfolio — budgets, timelines, executive reporting, and ROI frameworks</li>
+          <li>Lead, mentor, and grow infrastructure engineering teams; champion ITIL-aligned change management and quality assurance</li>
+          <li>Cultivate relationships with client executives, product directors, and resource allocation managers</li>
+        </ul>
+        <div class="tags"><span class="tag">Project Delivery</span><span class="tag">Team Leadership</span><span class="tag">Executive Reporting</span><span class="tag">Client Management</span></div>
+      </div>
+
+      <div class="job reveal">
+        <div class="job-top"><div class="job-title">Sr. Infrastructure Engineer</div><div class="job-meta">Mar 2016 – Present</div></div>
+        <div class="job-co">WPG Consulting, LLC.</div>
+        <ul>
+          <li>Delivered 54+ infrastructure projects across 30 platforms for mid-market and enterprise clients</li>
+          <li>Lead cross-functional implementation teams through full project lifecycles, enforcing best practices throughout</li>
+          <li>Key areas: identity (Okta, Entra ID), virtualization (VMware, Hyper-V), cloud (Azure, GCP, AWS), backup (Veeam, Druva), endpoint (Intune, Jamf), networking (Cisco, Palo Alto)</li>
+        </ul>
+        <div class="tags"><span class="tag">VMware</span><span class="tag">Azure</span><span class="tag">Okta</span><span class="tag">Veeam</span><span class="tag">Cisco</span><span class="tag">Intune</span></div>
+      </div>
+
+      <div class="job reveal">
+        <div class="job-top"><div class="job-title">L2 Network Engineer</div><div class="job-meta">Sep 2015 – Mar 2016</div></div>
+        <div class="job-co">Empro Technical Solutions <span>· USA</span></div>
+        <ul>
+          <li>First-response diagnostics and end-to-end issue management within a 24×7×365 managed service desk</li>
+          <li>Vendor coordination and escalation management across enterprise network infrastructure</li>
+        </ul>
+        <div class="tags"><span class="tag">Networking</span><span class="tag">L2 Support</span><span class="tag">Managed Services</span></div>
+      </div>
+
+      <div class="job reveal">
+        <div class="job-top"><div class="job-title">Tech Lead</div><div class="job-meta">2009 – 2015</div></div>
+        <div class="job-co">Red Paladin Inc. <span>· USA</span></div>
+        <ul>
+          <li>Maintained production environment of 300+ VMs including VDI infrastructure</li>
+          <li>Configured Cisco ASA5520 firewalls, managed VLAN architecture, provisioned SAN datastores</li>
+          <li>Deployed and maintained Domain Controllers, Exchange Servers, and File Servers</li>
+        </ul>
+        <div class="tags"><span class="tag">VMware</span><span class="tag">VDI</span><span class="tag">Cisco ASA</span><span class="tag">SAN</span><span class="tag">Active Directory</span></div>
+      </div>
+
+      <div class="job reveal">
+        <div class="job-top"><div class="job-title">Tech Lead</div><div class="job-meta">Apr 2008 – Sep 2009</div></div>
+        <div class="job-co">Elemany IT Services Pvt Ltd.</div>
+        <ul>
+          <li>Infrastructure design and deployment across virtualization, switching, SAN storage, and Windows Server environments</li>
+        </ul>
+        <div class="tags"><span class="tag">VMware</span><span class="tag">Networking</span><span class="tag">Windows Server</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section class="block" id="certifications" style="background:var(--bg-elev);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-tag">Credentials</div>
+      <h2 class="sec-title">19 certifications across 5 vendors.</h2>
+      <p class="sec-sub">Each certification represents a domain, not just a badge. The Anthropic certs are recent additions reflecting where infrastructure is heading. Tap a vendor to expand.</p>
+    </div>
+
+    <div class="cert-groups reveal">
+
+      <details class="cert-group" open>
+        <summary>
+          <span class="cg-badge">AN</span>
+          <span class="cg-name">Anthropic</span>
+          <span class="cg-count">2 certs</span>
+          <span class="cg-chev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span>
+        </summary>
+        <div class="cg-body">
+          <div class="cert-item">
+            <div class="ci-top"><div class="ci-name">Claude Code in Action</div><span class="ci-status ci-active">ACTIVE</span></div>
+            <div class="ci-meta">Issued Mar 2026 · ID: drzwgykzuws5</div>
+            <div class="ci-tags"><span class="tag">Claude Code</span><span class="tag">AI-Assisted Development</span><span class="tag">Agentic Workflows</span></div>
+          </div>
+          <div class="cert-item">
+            <div class="ci-top"><div class="ci-name">Model Context Protocol</div><span class="ci-status ci-active">ACTIVE</span></div>
+            <div class="ci-meta">Issued Mar 2026 · ID: 4xerh9uyjqiy</div>
+            <div class="ci-tags"><span class="tag">MCP</span><span class="tag">AI Tool Integration</span><span class="tag">Claude API</span></div>
+          </div>
+        </div>
+      </details>
+
+      <details class="cert-group">
+        <summary>
+          <span class="cg-badge">G</span>
+          <span class="cg-name">Google</span>
+          <span class="cg-count">4 certs</span>
+          <span class="cg-chev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span>
+        </summary>
+        <div class="cg-body">
+          <div class="cert-item">
+            <div class="ci-top"><div class="ci-name">Google AI Essentials Specialization</div><span class="ci-status ci-active">ACTIVE</span></div>
+            <div class="ci-meta">Issued Feb 2026</div>
+            <div class="ci-tags"><span class="tag">Critical Thinking</span><span class="tag">Generative AI</span><span class="tag">Artificial Intelligence</span></div>
+          </div>
+          <div class="cert-item">
+            <div class="ci-top"><div class="ci-name">Stay Ahead of the AI Curve</div><span class="ci-status ci-active">ACTIVE</span></div>
+            <div class="ci-meta">Issued Feb 2026 · ID: Y2SNXCL3FFT5</div>
+            <div class="ci-tags"><span class="tag">Artificial Intelligence</span></div>
+          </div>
+          <div class="cert-item">
+            <div class="ci-top"><div class="ci-name">Use AI Responsibly</div><span class="ci-status ci-active">ACTIVE</span></div>
+            <div class="ci-meta">Issued Feb 2026 · ID: WJZJSLHSTLWG</div>
+            <div class="ci-tags"><span class="tag">Artificial Intelligence</span></div>
+          </div>
+          <div class="cert-item">
+            <div class="ci-top"><div class="ci-name">Discover the Art of Prompting</div><span class="ci-status ci-active">ACTIVE</span></div>
+            <div class="ci-meta">Issued Feb 2026 · ID: 79353DBOGTY9</div>
+            <div class="ci-tags"><span class="tag">AI Prompting</span><span class="tag">Artificial Intelligence</span></div>
+          </div>
+        </div>
+      </details>
+
+      <details class="cert-group">
+        <summary>
+          <span class="cg-badge">C</span>
+          <span class="cg-name">Cisco</span>
+          <span class="cg-count">9 certs</span>
+          <span class="cg-chev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span>
+        </summary>
+        <div class="cg-body">
+          <div class="cert-item">
+            <div class="ci-top"><div class="ci-name">CCNP Enterprise</div><span class="ci-status ci-active">ACTIVE</span></div>
+            <div class="ci-meta">Issued Dec 2016 · ID: CSCO11303827</div>
+            <div class="ci-tags"><span class="tag">Routing &amp; Switching</span><span class="tag">OSPF</span><span class="tag">BGP</span><span class="tag">EIGRP</span></div>
+          </div>
+          <div class="cert-item">
+            <div class="ci-top"><div class="ci-name">CCNP Collaboration</div><span class="ci-status ci-active">ACTIVE</span></div>
+            <div class="ci-meta">Issued Aug 2023</div>
+            <div class="ci-tags"><span class="tag">Unified Communications</span><span class="tag">CUCM</span><span class="tag">Collaboration Architecture</span></div>
+          </div>
+          <div class="cert-item">
+            <div class="ci-top"><div class="ci-name">CCNA</div><span class="ci-status ci-active">ACTIVE</span></div>
+            <div class="ci-meta">Issued Sep 2016 · ID: CSCO11303827</div>
+            <div class="ci-tags"><span class="tag">Networking</span><span class="tag">Switching</span><span class="tag">Routing</span></div>
+          </div>
+          <div class="cert-item">
+            <div class="ci-top"><div class="ci-name">Certified Specialist – Enterprise Core</div><span class="ci-status ci-active">ACTIVE</span></div>
+            <div class="ci-meta">Issued Dec 2016</div>
+            <div class="ci-tags"><span class="tag">Enterprise Core</span><span class="tag">ENCOR</span><span class="tag">Network Architecture</span></div>
+          </div>
+          <div class="cert-item">
+            <div class="ci-top"><div class="ci-name">Certified Specialist – Enterprise Advanced Infrastructure</div><span class="ci-status ci-active">ACTIVE</span></div>
+            <div class="ci-meta">Issued Dec 2016</div>
+            <div class="ci-tags"><span class="tag">Advanced Infrastructure</span><span class="tag">SD-Access</span><span class="tag">Enterprise Design</span></div>
+          </div>
+          <div class="cert-item">
+            <div class="ci-top"><div class="ci-name">Certified Specialist – Security Core</div><span class="ci-status ci-active">ACTIVE</span></div>
+            <div class="ci-meta">Issued Nov 2019</div>
+            <div class="ci-tags"><span class="tag">Security Core</span><span class="tag">SCOR</span><span class="tag">Network Security</span></div>
+          </div>
+          <div class="cert-item">
+            <div class="ci-top"><div class="ci-name">Certified Specialist – Collaboration Core</div><span class="ci-status ci-active">ACTIVE</span></div>
+            <div class="ci-meta">Issued Jul 2023</div>
+            <div class="ci-tags"><span class="tag">Collaboration Core</span><span class="tag">CUCM</span><span class="tag">SIP</span></div>
+          </div>
+          <div class="cert-item expiring">
+            <div class="ci-top"><div class="ci-name">Certified Specialist – Enterprise Wireless Implementation</div><span class="ci-status ci-exp">EXPIRES JUL 2026</span></div>
+            <div class="ci-meta">Issued Jul 2023</div>
+            <div class="ci-tags"><span class="tag">Enterprise Wireless</span><span class="tag">802.11</span><span class="tag">Cisco WLC</span></div>
+          </div>
+          <div class="cert-item expiring">
+            <div class="ci-top"><div class="ci-name">Certified Specialist – Collaboration Applications Implementation</div><span class="ci-status ci-exp">EXPIRES AUG 2026</span></div>
+            <div class="ci-meta">Issued Aug 2023</div>
+            <div class="ci-tags"><span class="tag">Collaboration Applications</span><span class="tag">CUCM</span><span class="tag">Unity Connection</span></div>
+          </div>
+        </div>
+      </details>
+
+      <details class="cert-group">
+        <summary>
+          <span class="cg-badge">VM</span>
+          <span class="cg-name">VMware</span>
+          <span class="cg-count">3 certs</span>
+          <span class="cg-chev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span>
+        </summary>
+        <div class="cg-body">
+          <div class="cert-item">
+            <div class="ci-top"><div class="ci-name">VMware Certified Professional – DCV 2020</div><span class="ci-status ci-active">ACTIVE</span></div>
+            <div class="ci-meta">Issued Mar 2020</div>
+            <div class="ci-tags"><span class="tag">vSphere</span><span class="tag">vSAN</span><span class="tag">Data Center Virtualization</span></div>
+          </div>
+          <div class="cert-item">
+            <div class="ci-top"><div class="ci-name">VCP6</div><span class="ci-status ci-active">ACTIVE</span></div>
+            <div class="ci-meta">Issued Apr 2016 · ID: VMW-00342059D-00065873</div>
+            <div class="ci-tags"><span class="tag">vSphere 6</span><span class="tag">Data Center Virtualization</span></div>
+          </div>
+          <div class="cert-item">
+            <div class="ci-top"><div class="ci-name">VCP5</div><span class="ci-status ci-active">ACTIVE</span></div>
+            <div class="ci-meta">Issued May 2014 · ID: VMW-00342059D-00065873</div>
+            <div class="ci-tags"><span class="tag">vSphere 5</span><span class="tag">Data Center Virtualization</span></div>
+          </div>
+        </div>
+      </details>
+
+      <details class="cert-group">
+        <summary>
+          <span class="cg-badge">MS</span>
+          <span class="cg-name">Microsoft</span>
+          <span class="cg-count">1 cert</span>
+          <span class="cg-chev"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span>
+        </summary>
+        <div class="cg-body">
+          <div class="cert-item">
+            <div class="ci-top"><div class="ci-name">MCSE</div><span class="ci-status ci-active">ACTIVE</span></div>
+            <div class="ci-meta">Issued Jan 2008 · ID: 10778223</div>
+            <div class="ci-tags"><span class="tag">Windows Server</span><span class="tag">Active Directory</span><span class="tag">Enterprise Infrastructure</span></div>
+          </div>
+        </div>
+      </details>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact block" id="contact">
+  <div class="wrap contact-inner">
+    <div class="reveal">
+      <div class="sec-tag">Ready to work together?</div>
+      <h2>Let's talk about the work that matters.</h2>
+      <p>Available for contract and consulting engagements — onsite, hybrid, or remote across NJ/NY and nationally.</p>
+      <div class="hero-actions">
+        <a href="https://calendar.app.google/1Qoiy76WvWXRWqL18" class="btn btn-primary" target="_blank" rel="noopener">Schedule a call →</a>
+        <a href="mailto:acharyajigar@gmail.com" class="btn btn-ghost">Send an email</a>
+      </div>
+    </div>
+    <div class="contact-list reveal" style="transition-delay:.1s">
+      <a class="crow" href="https://calendar.app.google/1Qoiy76WvWXRWqL18" target="_blank" rel="noopener">
+        <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg></span>
+        <div><div class="cl">SCHEDULE</div><div class="cv">Book a call</div></div>
+      </a>
+      <a class="crow" href="mailto:acharyajigar@gmail.com">
+        <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>
+        <div><div class="cl">EMAIL</div><div class="cv">acharyajigar@gmail.com</div></div>
+      </a>
+      <a class="crow" href="https://www.linkedin.com/in/jigar-acharya-b2481024" target="_blank" rel="noopener">
+        <span class="ci"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.4c0-1.29-.02-2.95-1.8-2.95-1.8 0-2.07 1.4-2.07 2.85V21h-4z"/></svg></span>
+        <div><div class="cl">LINKEDIN</div><div class="cv">jigar-acharya</div></div>
+      </a>
+      <a class="crow" href="https://acharyajigar-ops.github.io/jigaracharya.github.io/Jigar_Acharya_CV.pdf" target="_blank" rel="noopener">
+        <span class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg></span>
+        <div><div class="cl">RESUME</div><div class="cv">Download CV (PDF)</div></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-inner">
+    <div><b style="color:var(--muted)">Jigar Acharya</b> — Infrastructure Engineer &amp; Consultant · Parlin, NJ · Green Card</div>
+    <div class="foot-links">
+      <a href="#specialisations">specialisations</a>
+      <a href="#case-studies">case_studies</a>
+      <a href="#experience">experience</a>
+      <a href="#certifications">certifications</a>
+    </div>
+  </div>
+  <div class="wrap" style="margin-top:14px;color:var(--muted-2);font-family:var(--mono);font-size:12px">30 Platforms · 54+ Projects · 19 Certifications · 15+ Years</div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 12));
+
+  const menuBtn = document.getElementById('menuBtn');
+  const navmenu = document.getElementById('navmenu');
+  menuBtn.addEventListener('click', () => navmenu.classList.toggle('open'));
+  navmenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navmenu.classList.remove('open')));
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: .12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  const links = [...document.querySelectorAll('nav a.link')];
+  const sections = links.map(l => document.querySelector(l.getAttribute('href'))).filter(Boolean);
+  const so = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + e.target.id));
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  sections.forEach(s => so.observe(s));
+</script>
 </body>
 </html>
