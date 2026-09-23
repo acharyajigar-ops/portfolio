@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>[hidden]{display:none!important}</style>
+<title>Jigar Acharya Glass Options</title>
+<script>
+(function(){var r=document.documentElement,o='a',m;
+try{o=localStorage.getItem('ja-opt')||'a';m=localStorage.getItem('ja-mode');}catch(e){}
+if(!m){var t=r.getAttribute('data-theme');m=t||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');}
+r.setAttribute('data-opt',o);r.setAttribute('data-mode',m);})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* ---------- Option A · Lavender (light default) ---------- */
+:root{
+  --bg:#EEEDF6; --blob1:#D9CCFF; --blob2:#FBD9EC; --blob3:#CFE3FF;
+  --glass:rgba(255,255,255,.55); --glass-strong:rgba(255,255,255,.78); --edge:rgba(255,255,255,.85); --hair:rgba(40,30,90,.10);
+  --ink:#17152B; --muted:#5E5A78; --eyebrow:#7B5CF0;
+  --g1:#8B6CF0; --g2:#5E8BF2; --btn:#15142A; --btn-ink:#FFFFFF;
+  --ok:#23845A; --shadow:0 10px 40px rgba(60,40,140,.10);
+  --sans:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+:root[data-opt="a"][data-mode="dark"]{
+  color-scheme:dark;
+  --bg:#12111F; --blob1:#3B2A7A; --blob2:#5A2450; --blob3:#1E3470;
+  --glass:rgba(255,255,255,.06); --glass-strong:rgba(255,255,255,.10); --edge:rgba(255,255,255,.14); --hair:rgba(255,255,255,.10);
+  --ink:#EEEBFA; --muted:#A7A2C4; --eyebrow:#B39DFF;
+  --g1:#B39DFF; --g2:#7FA6FF; --btn:#EEEBFA; --btn-ink:#12111F; --ok:#6FD39E; --shadow:0 10px 40px rgba(0,0,0,.35);
+}
+/* ---------- Option B · Glacier ---------- */
+:root[data-opt="b"]{
+  --bg:#E9F1F3; --blob1:#BFE6EC; --blob2:#D6E9FF; --blob3:#D9F3E6;
+  --glass:rgba(255,255,255,.55); --glass-strong:rgba(255,255,255,.8); --edge:rgba(255,255,255,.9); --hair:rgba(10,60,70,.10);
+  --ink:#0F1E24; --muted:#4F666D; --eyebrow:#0E7C8C;
+  --g1:#0E7C8C; --g2:#2F8FD6; --btn:#0F1E24; --btn-ink:#FFFFFF; --ok:#1F7E52; --shadow:0 10px 40px rgba(10,70,90,.10);
+}
+:root[data-opt="b"][data-mode="dark"]{
+  color-scheme:dark;
+  --bg:#0A1519; --blob1:#0F4450; --blob2:#153A62; --blob3:#123D30;
+  --glass:rgba(255,255,255,.06); --glass-strong:rgba(255,255,255,.10); --edge:rgba(255,255,255,.14); --hair:rgba(255,255,255,.10);
+  --ink:#E4F0F2; --muted:#98B1B7; --eyebrow:#5FD0DE;
+  --g1:#5FD0DE; --g2:#7DB8F2; --btn:#E4F0F2; --btn-ink:#0A1519; --ok:#6FD39E; --shadow:0 10px 40px rgba(0,0,0,.35);
+}
+/* ---------- Option C · Aurora (dark-first) ---------- */
+:root[data-opt="c"]{
+  color-scheme:dark;
+  --bg:#0A0C16; --blob1:#3D2C8D; --blob2:#0F5F63; --blob3:#1B2C6B;
+  --glass:rgba(255,255,255,.05); --glass-strong:rgba(255,255,255,.09); --edge:rgba(255,255,255,.12); --hair:rgba(255,255,255,.09);
+  --ink:#ECEEF8; --muted:#9EA3C0; --eyebrow:#5EEAD4;
+  --g1:#A78BFA; --g2:#5EEAD4; --btn:#ECEEF8; --btn-ink:#0A0C16; --ok:#5EEAD4; --shadow:0 10px 50px rgba(0,0,0,.45);
+}
+:root[data-opt="c"][data-mode="light"]{
+  color-scheme:light;
+  --bg:#F1F2F8; --blob1:#DCD3FF; --blob2:#C8F1EA; --blob3:#D6DEFF;
+  --glass:rgba(255,255,255,.6); --glass-strong:rgba(255,255,255,.82); --edge:rgba(255,255,255,.9); --hair:rgba(20,20,60,.10);
+  --ink:#141629; --muted:#5A5F7C; --eyebrow:#0E8C7C;
+  --g1:#7C5CF0; --g2:#119C8A; --btn:#141629; --btn-ink:#FFFFFF; --ok:#1F7E52; --shadow:0 10px 40px rgba(30,30,90,.10);
+}
+:root[data-mode="dark"]{color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 var(--sans);padding-inline:16px;padding-bottom:110px;transition:background .3s}
+.aura{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+   radial-gradient(40vw 40vw at 85% 8%, var(--blob1), transparent 70%),
+   radial-gradient(35vw 35vw at 5% 40%, var(--blob2), transparent 70%),
+   radial-gradient(45vw 45vw at 70% 85%, var(--blob3), transparent 70%);
+  opacity:.9}
+.site{position:relative;z-index:1;max-width:1120px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr);gap:18px;padding-block:14px 20px}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--g1);outline-offset:2px;border-radius:8px}
+.glass{background:var(--glass);border:1px solid var(--edge);border-radius:24px;box-shadow:var(--shadow);backdrop-filter:blur(22px) saturate(140%);-webkit-backdrop-filter:blur(22px) saturate(140%)}
+.panel{padding:clamp(22px,4vw,40px)}
+.eyebrow{font:600 .72rem/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--eyebrow)}
+h1,h2,h3{margin:0;text-wrap:balance;letter-spacing:-.02em}
+h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:700;line-height:1.15}
+h3{font-size:1.02rem;font-weight:700}
+p{margin:0}
+.muted{color:var(--muted)}
+.grad{background:linear-gradient(90deg,var(--g1),var(--g2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.sec-head > div:first-child{display:grid;gap:8px}
+.hero>*,.about>*,.contact>*,.creds>*{min-width:0}
+
+/* nav */
+.nav{position:sticky;top:calc(env(safe-area-inset-top,0px) + 10px);z-index:5;display:flex;align-items:center;gap:14px;padding:10px 12px 10px 14px;border-radius:20px}
+.logo{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;font-weight:800;font-size:.9rem;color:var(--btn-ink);background:var(--btn);flex:none}
+.who{display:grid;line-height:1.2;margin-right:auto}
+.who b{font-size:.92rem}
+.who span{font-size:.72rem;color:var(--muted)}
+.links{display:flex;gap:2px;padding:4px;border-radius:999px;background:var(--glass);border:1px solid var(--hair)}
+.links a{font-size:.8rem;text-decoration:none;color:var(--muted);padding:6px 12px;border-radius:999px}
+.links a:hover,.links a.on{background:var(--glass-strong);color:var(--ink);box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.pill{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 18px;border-radius:999px;font:600 .85rem var(--sans);text-decoration:none;border:1px solid var(--hair);background:var(--glass-strong);color:var(--ink);cursor:pointer;white-space:nowrap}
+.pill.dark{background:var(--btn);color:var(--btn-ink);border-color:transparent}
+.pill svg{width:14px;height:14px}
+@media (max-width:900px){.links{display:none}}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.1fr 1fr;gap:32px;align-items:center;overflow:hidden;position:relative}
+.hero h1{font-size:clamp(2.4rem,5.6vw,3.9rem);font-weight:800;line-height:1.02;margin:14px 0 6px}
+.hero .role{font-size:clamp(1.3rem,2.8vw,1.9rem);font-weight:700;line-height:1.2}
+.hero .lede{color:var(--muted);max-width:46ch;margin-top:14px;font-size:1rem}
+.cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.runs{margin-top:30px;display:grid;gap:10px}
+.runs small{font-size:.72rem;color:var(--muted)}
+.marks{display:flex;flex-wrap:wrap;gap:6px 20px}
+.marks span{font-weight:700;font-size:.95rem;color:var(--muted);opacity:.85;letter-spacing:-.01em}
+.visual{position:relative;min-height:380px;display:grid;place-items:center}
+.frame{width:min(300px,78%);aspect-ratio:4/5;border-radius:44px;position:relative;overflow:hidden;
+  background:linear-gradient(160deg,var(--glass-strong),var(--glass));border:1px solid var(--edge);box-shadow:var(--shadow)}
+.frame::before{content:"";position:absolute;inset:-20%;background:radial-gradient(circle at 60% 35%,var(--g1),transparent 55%),radial-gradient(circle at 30% 80%,var(--g2),transparent 55%);opacity:.45;filter:blur(20px)}
+.frame .mono{position:absolute;inset:0;display:grid;place-items:center;font-weight:800;font-size:clamp(4rem,10vw,6rem);letter-spacing:-.05em;color:var(--ink);opacity:.9}
+.frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.float{position:absolute;padding:14px 16px;border-radius:18px}
+.f-years{top:8px;right:4%;text-align:center;min-width:100px}
+.f-years b{display:block;font-size:2rem;font-weight:800;line-height:1}
+.f-years span{font-size:.7rem;color:var(--muted)}
+.f-rto{bottom:14px;right:0;width:210px}
+.f-rto .t{font-size:.7rem;color:var(--muted)}
+.f-rto .n{font-weight:800;font-size:1.15rem;margin:2px 0 8px}
+.bars{display:grid;gap:6px}
+.bar{display:grid;grid-template-columns:44px 1fr;align-items:center;gap:8px;font:500 .66rem var(--mono);color:var(--muted)}
+.bar i{display:block;height:8px;border-radius:99px;background:var(--hair)}
+.bar i.new{background:linear-gradient(90deg,var(--g1),var(--g2))}
+.orb{position:absolute;left:6%;top:48%;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;color:var(--g1)}
+.orb svg{width:22px;height:22px}
+@media (max-width:860px){.hero{grid-template-columns:1fr}.visual{min-height:340px}}
+/* B: portrait left */
+:root[data-opt="b"] .hero{grid-template-columns:1fr 1.1fr}
+:root[data-opt="b"] .hero .visual{order:-1}
+:root[data-opt="b"] .f-years{left:4%;right:auto}
+:root[data-opt="b"] .orb{left:auto;right:8%}
+@media (max-width:860px){:root[data-opt="b"] .hero{grid-template-columns:1fr}}
+/* C: rounded circle portrait */
+:root[data-opt="c"] .frame{border-radius:50%;aspect-ratio:1}
+
+/* about */
+.about{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:20px;padding:14px;border-radius:18px}
+.stat{display:grid;gap:4px}
+.stat .ic{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;background:var(--glass-strong);border:1px solid var(--hair);color:var(--g1)}
+.stat .ic svg{width:14px;height:14px}
+.stat b{font-size:1.3rem;font-weight:800}
+.stat span{font-size:.72rem;color:var(--muted)}
+@media (max-width:760px){.about{grid-template-columns:1fr}}
+
+/* services */
+.services{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.svc{padding:20px;border-radius:20px;display:flex;flex-direction:column;gap:10px;position:relative}
+.svc .ic{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;color:#fff}
+.svc .ic svg{width:20px;height:20px}
+.svc p{font-size:.85rem;color:var(--muted)}
+.svc .tags{margin-top:auto;padding-top:6px}
+.i1{background:linear-gradient(135deg,#F2B35B,#E98F3A)}
+.i2{background:linear-gradient(135deg,#A98BF5,#7C5CF0)}
+.i3{background:linear-gradient(135deg,#6FA8F7,#3F79E8)}
+.i4{background:linear-gradient(135deg,#6ED8C9,#27A9A0)}
+:root[data-opt="b"] .services{grid-template-columns:repeat(2,1fr)}
+@media (max-width:980px){.services{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.services,:root[data-opt="b"] .services{grid-template-columns:1fr}}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font:500 .7rem var(--sans);padding:4px 9px;border-radius:999px;background:var(--glass-strong);border:1px solid var(--hair);color:var(--ink)}
+
+/* tools */
+.tools{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+@media (max-width:820px){.tools{grid-template-columns:repeat(4,1fr)}}
+@media (max-width:520px){.tools{grid-template-columns:repeat(3,1fr)}}
+.tool{display:grid;justify-items:center;gap:8px;padding:16px 8px;border-radius:16px;text-align:center}
+.tool i{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;font:800 .78rem var(--sans);font-style:normal;color:var(--ink);background:var(--glass-strong);border:1px solid var(--hair)}
+.tool span{font-size:.72rem;color:var(--muted)}
+.tool.core i{background:linear-gradient(135deg,var(--g1),var(--g2));color:#fff;border-color:transparent}
+
+/* work */
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{height:34px;padding:0 14px;border-radius:999px;border:1px solid var(--hair);background:var(--glass);font:600 .78rem var(--sans);color:var(--muted);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--btn);color:var(--btn-ink);border-color:transparent}
+.works{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.work{border-radius:20px;overflow:hidden;display:flex;flex-direction:column}
+.work[hidden]{display:none}
+.thumb{aspect-ratio:16/10;max-width:100%;padding:18px;display:grid;align-content:center;gap:10px;position:relative;
+  background:linear-gradient(145deg,color-mix(in srgb,var(--g1) 18%,transparent),color-mix(in srgb,var(--g2) 14%,transparent))}
+.thumb .big{font-weight:800;font-size:1.6rem;letter-spacing:-.02em}
+.thumb .cap{font-size:.72rem;color:var(--muted)}
+.nodes{display:flex;gap:10px;align-items:center;justify-content:center}
+.node{width:48px;height:58px;border-radius:10px;background:var(--glass-strong);border:1px solid var(--edge);display:grid;gap:4px;padding:8px;align-content:start}
+.node i{display:block;height:4px;border-radius:2px;background:var(--hair)}
+.node.live i:first-child{background:var(--ok)}
+.node.up{outline:2px dashed var(--g1);outline-offset:3px}
+.link{width:18px;height:2px;background:var(--g1);opacity:.6}
+.checks{display:grid;gap:6px;font:500 .74rem var(--mono)}
+.checks div{display:flex;justify-content:space-between;padding:6px 10px;border-radius:8px;background:var(--glass-strong)}
+.checks .y{color:var(--ok)} .checks .n{color:#D0556A}
+.merge{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px}
+.merge .src{display:grid;gap:6px}
+.merge .src i{height:14px;border-radius:5px;background:var(--glass-strong);border:1px solid var(--hair)}
+.merge .dst{height:62px;border-radius:12px;background:linear-gradient(135deg,var(--g1),var(--g2));display:grid;place-items:center;color:#fff;font:700 .8rem var(--sans)}
+.merge svg{width:20px;height:20px;color:var(--muted)}
+.wbody{padding:16px 18px 18px;display:grid;gap:6px}
+.wtop{display:flex;justify-content:space-between;align-items:start;gap:10px}
+.wbody .k{font-size:.72rem;color:var(--muted)}
+.arrow{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--hair);background:var(--glass-strong);flex:none}
+.arrow svg{width:13px;height:13px}
+.cs{display:grid;gap:10px;margin:8px 0 0}
+.cs dt{font:600 .66rem var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--eyebrow)}
+.cs dd{margin:2px 0 0;font-size:.84rem;color:var(--muted)}
+.cs ul{margin:0;padding-left:16px;color:var(--ink)}
+.cs li{margin:2px 0}
+@media (max-width:980px){.works{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:620px){.works{grid-template-columns:1fr}}
+
+/* table */
+.tbl{overflow-x:auto;border-radius:18px;border:1px solid var(--hair);background:var(--glass)}
+table{border-collapse:collapse;width:100%;min-width:700px;font-size:.86rem}
+th,td{text-align:left;padding:13px 16px;border-bottom:1px solid var(--hair);vertical-align:top}
+th{font:600 .7rem var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+tr:last-child td{border-bottom:0}
+td:first-child{font-weight:700;white-space:nowrap}
+
+/* process */
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;counter-reset:s}
+.step{padding:16px;border-radius:18px;display:grid;gap:6px;position:relative}
+.step .n{font:500 1.3rem var(--sans);color:var(--muted);opacity:.7}
+.step .ic{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;background:color-mix(in srgb,var(--g1) 18%,transparent);color:var(--g1)}
+.step .ic svg{width:15px;height:15px}
+.step .top{display:flex;justify-content:space-between;align-items:center}
+.step p{font-size:.8rem;color:var(--muted)}
+@media (max-width:900px){.steps{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:480px){.steps{grid-template-columns:1fr}}
+
+/* credentials */
+.creds{display:grid;grid-template-columns:1.2fr 1fr;gap:16px}
+.jobs{display:grid;gap:0}
+.job{display:grid;grid-template-columns:100px 1fr;gap:14px;padding:12px 0;border-bottom:1px solid var(--hair)}
+.job:last-child{border-bottom:0}
+.job .when{font:500 .74rem var(--mono);color:var(--muted);padding-top:2px}
+.job b{font-size:.92rem}
+.job span{display:block;font-size:.8rem;color:var(--muted)}
+.certs{display:grid;gap:8px}
+.cert{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:10px 12px;border-radius:12px;background:var(--glass-strong);border:1px solid var(--hair);font-size:.84rem}
+.cert em{font-style:normal;font:500 .7rem var(--mono);color:var(--muted);white-space:nowrap}
+@media (max-width:820px){.creds{grid-template-columns:1fr}}
+
+/* contact */
+.contact{display:grid;grid-template-columns:1fr 1.1fr;gap:28px;align-items:center;position:relative;overflow:hidden}
+.clist{display:grid;gap:14px;margin-top:22px}
+.crow{display:flex;align-items:center;gap:12px;font-size:.9rem}
+.crow .ic{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:var(--glass-strong);border:1px solid var(--hair);color:var(--g1);flex:none}
+.crow .ic svg{width:15px;height:15px}
+.crow .v{user-select:all;word-break:break-all}
+.copy{margin-left:auto;font:600 .72rem var(--sans);padding:5px 10px;border-radius:999px;border:1px solid var(--hair);background:var(--glass-strong);color:var(--ink);cursor:pointer}
+.book{padding:24px;border-radius:20px;display:grid;gap:14px;position:relative;z-index:1}
+.book ul{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.book li{display:flex;gap:10px;font-size:.88rem;align-items:start}
+.book li::before{content:"";width:6px;height:6px;border-radius:50%;background:linear-gradient(135deg,var(--g1),var(--g2));margin-top:8px;flex:none}
+.sphere{position:absolute;right:-60px;bottom:-60px;width:220px;height:220px;border-radius:50%;pointer-events:none;
+  background:radial-gradient(circle at 32% 28%,rgba(255,255,255,.9),transparent 22%),radial-gradient(circle at 60% 60%,var(--g1),transparent 60%),radial-gradient(circle at 30% 80%,var(--g2),transparent 55%);opacity:.55;filter:blur(1px)}
+@media (max-width:820px){.contact{grid-template-columns:1fr}}
+footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:.75rem;color:var(--muted);padding:14px 20px;border-radius:18px}
+
+/* option switcher (review tool, not part of the site) */
+.switch{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(env(safe-area-inset-bottom,0px) + 14px);z-index:20;display:flex;align-items:center;gap:6px;padding:6px;border-radius:999px;max-width:calc(100% - 24px);overflow-x:auto}
+.switch small{font:600 .66rem var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:0 8px 0 10px;white-space:nowrap}
+.opt{height:34px;padding:0 14px;border-radius:999px;border:0;background:transparent;color:var(--muted);font:600 .8rem var(--sans);cursor:pointer;display:flex;align-items:center;gap:7px;white-space:nowrap}
+.opt i{width:12px;height:12px;border-radius:50%}
+.opt[aria-pressed="true"]{background:var(--btn);color:var(--btn-ink)}
+.sep{width:1px;height:20px;background:var(--hair);flex:none}
+
+/* stack map + tool cards */
+.map{display:grid;gap:0;margin-top:6px}
+.layer{display:grid;grid-template-columns:220px 1fr;gap:16px;align-items:center;padding:14px 16px;border-radius:18px;background:var(--glass);border:1px solid var(--hair)}
+.lhead{display:grid;line-height:1.3}
+.lhead b{font-size:.92rem}
+.lhead span{font-size:.74rem;color:var(--muted)}
+.lchips{display:flex;flex-wrap:wrap;gap:8px}
+.flow{display:flex;align-items:center;gap:10px;padding:6px 0 6px 40px;font:500 .72rem var(--mono);color:var(--muted)}
+.flow::before{content:"";width:2px;height:22px;background:linear-gradient(var(--g1),var(--g2));border-radius:2px}
+.flow span::before{content:"↓ "}
+.loop{margin-top:12px;padding:10px 14px;border-radius:12px;border:1px dashed var(--g1);font-size:.8rem;color:var(--muted)}
+.tbtn{height:34px;padding:0 12px;border-radius:10px;border:1px solid var(--hair);background:var(--glass-strong);color:var(--ink);font:600 .8rem var(--sans);cursor:pointer;display:inline-flex;align-items:center;gap:7px;transition:opacity .2s,box-shadow .2s,transform .2s}
+.tbtn i{font-style:normal;width:20px;height:20px;border-radius:6px;display:grid;place-items:center;font:800 .6rem var(--sans);color:#fff;background:linear-gradient(135deg,var(--g1),var(--g2))}
+.tbtn:hover{transform:translateY(-1px)}
+@media (max-width:720px){.layer{grid-template-columns:1fr;gap:10px}.flow{padding-left:20px}}
+
+.focusbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:14px;padding:10px 14px;border-radius:12px;background:color-mix(in srgb,var(--g1) 14%,transparent);font-size:.84rem}
+.focusbar[hidden]{display:none}
+
+.tcards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-items:start}
+@media (max-width:1000px){.tcards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.tcards{grid-template-columns:1fr}}
+.tcard{padding:18px;border-radius:20px;display:grid;gap:12px;transition:opacity .2s,box-shadow .2s,outline-color .2s;outline:2px solid transparent;outline-offset:2px;scroll-margin-top:100px}
+.tcard[hidden]{display:none}
+.th{display:flex;gap:12px;align-items:center}
+.th .badge{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;font:800 .8rem var(--sans);color:#fff;background:linear-gradient(135deg,var(--g1),var(--g2));flex:none}
+.th h3{font-size:1.02rem}
+.th small{display:block;font-size:.72rem;color:var(--muted)}
+.tcard .role{font-size:.86rem;color:var(--ink);margin:0}
+.tlabel{font:600 .64rem var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--eyebrow)}
+.tcard ul.do{margin:4px 0 0;padding-left:16px;font-size:.82rem;color:var(--muted);display:grid;gap:3px}
+.rels{display:grid;gap:6px;margin-top:4px}
+.rel{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start;text-align:left;padding:7px 9px;border-radius:10px;border:1px solid var(--hair);background:var(--glass-strong);color:var(--ink);cursor:pointer;font:inherit}
+.rel b{font-size:.76rem;white-space:nowrap}
+.rel span{font-size:.76rem;color:var(--muted);line-height:1.4}
+.rel:hover{border-color:var(--g1)}
+
+/* focus state */
+.focusing .tbtn:not(.hit),.focusing .tcard:not(.hit){opacity:.28}
+.focusing .tbtn.sel,.focusing .tcard.sel{outline:2px solid var(--g1);box-shadow:0 0 0 6px color-mix(in srgb,var(--g1) 18%,transparent)}
+.focusing .tbtn.sel{outline-offset:1px}
+</style>
+</head>
+<body>
+
+
+<div class="aura" aria-hidden="true"></div>
+
+<div class="site" id="top">
+
+  <!-- NAV -->
+  <nav class="nav glass" aria-label="Main">
+    <div class="logo">JA</div>
+    <div class="who"><b>Jigar Acharya</b><span>Senior Systems Engineer</span></div>
+    <div class="links">
+      <a href="#top" class="on">Home</a><a href="#about">About</a><a href="#services">Services</a><a href="#stack">Stack</a><a href="#work">Work</a><a href="#process">Process</a><a href="#credentials">Credentials</a><a href="#contact">Contact</a>
+    </div>
+    <a class="pill" href="#contact">Let's talk <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 11 11 5M6 5h5v5"/></svg></a>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero glass panel">
+    <div>
+      <span class="eyebrow">Hello, I'm</span>
+      <h1>Jigar Acharya</h1>
+      <div class="role grad">Systems Engineer — Virtualization, Backup &amp; Identity</div>
+      <p class="lede">I build VMware and Hyper-V platforms, the backup that brings them back, and the Okta and Duo layer that decides who gets in. 15+ years, for organizations where downtime is not an option.</p>
+      <div class="cta">
+        <a class="pill dark" href="#work">View my work <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 11 11 5M6 5h5v5"/></svg></a>
+        <a class="pill" href="https://calendar.app.google/1Qoiy76WvWXRWqL18" target="_blank" rel="noopener">Book a call <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2.5" y="3.5" width="11" height="10" rx="2"/><path d="M2.5 7h11M5.5 2v3M10.5 2v3"/></svg></a>
+      </div>
+      <div class="runs">
+        <small>Platforms I run in production</small>
+        <div class="marks"><span>VMware</span><span>Hyper-V</span><span>Veeam</span><span>Cohesity</span><span>Okta</span><span>Duo</span></div>
+      </div>
+    </div>
+    <div class="visual">
+      <div class="frame">
+        <!-- To use a photo: replace the div below with <img src="jigar.jpg" alt="Jigar Acharya"> -->
+        <div class="mono">JA</div>
+      </div>
+      <div class="float glass f-years"><b>15+</b><span>Years experience</span></div>
+      <div class="float glass f-rto">
+        <div class="t">Restore time · Veeam overhaul</div>
+        <div class="n">4 h → 22 min</div>
+        <div class="bars">
+          <div class="bar">Before<i style="width:100%"></i></div>
+          <div class="bar">After<i class="new" style="width:9.2%"></i></div>
+        </div>
+      </div>
+      <div class="orb glass" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c.6 4.6 3.4 7.4 8 8-4.6.6-7.4 3.4-8 8-.6-4.6-3.4-7.4-8-8 4.6-.6 7.4-3.4 8-8z"/></svg></div>
+    </div>
+  </header>
+
+  <!-- ABOUT -->
+  <section class="about glass panel" id="about">
+    <div>
+      <span class="eyebrow">About me</span>
+      <h2 style="margin-top:10px">Built to stay up.<br>Built to come back.</h2>
+      <div class="stats glass">
+        <div class="stat"><span class="ic"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="3" width="12" height="4" rx="1"/><rect x="2" y="9" width="12" height="4" rx="1"/></svg></span><b>54+</b><span>Projects delivered</span></div>
+        <div class="stat"><span class="ic"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="6" cy="6" r="2.5"/><circle cx="11.5" cy="7" r="2"/><path d="M1.5 13.5c.6-2.3 2.4-3.5 4.5-3.5s3.9 1.2 4.5 3.5M10 10.3c2 0 3.6.9 4.5 3.2"/></svg></span><b>100+</b><span>Clients served</span></div>
+        <div class="stat"><span class="ic"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="6.5" r="4"/><path d="M5.5 10 5 14.5l3-1.5 3 1.5-.5-4.5"/></svg></span><b>19</b><span>Certifications</span></div>
+      </div>
+    </div>
+    <p class="muted">I'm an infrastructure engineer and consultant at WPG Consulting, where I've spent the last decade designing, upgrading and rescuing the systems businesses run on. My focus is the stack under everything: hypervisors, the backup and DR that proves it can recover, and the identity layer in front of it all. I measure success in restores that work and upgrades nobody noticed.</p>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="glass panel" id="services">
+    <div class="sec-head"><div><span class="eyebrow">What I do</span><h2>Services I offer</h2></div></div>
+    <div class="services">
+      <article class="svc glass">
+        <span class="ic i1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="6" rx="1.5"/><rect x="3" y="14" width="18" height="6" rx="1.5"/><path d="M7 7h.01M7 17h.01"/></svg></span>
+        <h3>VMware vSphere &amp; vSAN</h3>
+        <p>Design, lifecycle upgrades with no outage window, Horizon VDI, and host refreshes on Cisco UCS.</p>
+        <div class="tags"><span class="tag">vSphere</span><span class="tag">vSAN</span><span class="tag">Horizon</span></div>
+      </article>
+      <article class="svc glass">
+        <span class="ic i2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="8.5" y="14" width="7" height="7" rx="1.5"/><path d="M6.5 10v2h11v-2M12 12v2"/></svg></span>
+        <h3>Hyper-V Clusters</h3>
+        <p>Failover clusters with CSV, Live Migration and Cluster-Aware Updating so patching doesn't mean downtime.</p>
+        <div class="tags"><span class="tag">WSFC</span><span class="tag">CSV</span><span class="tag">CAU</span></div>
+      </article>
+      <article class="svc glass">
+        <span class="ic i3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v4h4"/><path d="M12 8v4l3 2"/></svg></span>
+        <h3>Backup &amp; Disaster Recovery</h3>
+        <p>3-2-1-1 coverage, immutable copies and quarterly DR tests that prove the restore works.</p>
+        <div class="tags"><span class="tag">Veeam</span><span class="tag">Cohesity</span><span class="tag">Druva</span><span class="tag">Acronis</span></div>
+      </article>
+      <article class="svc glass">
+        <span class="ic i4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3 5 6v5c0 4.5 3 8 7 10 4-2 7-5.5 7-10V6z"/><path d="m9 12 2 2 4-4"/></svg></span>
+        <h3>Identity &amp; MFA</h3>
+        <p>Okta SSO and SCIM tied to HR, Duo MFA and device trust in front of VPN, RDP and VDI.</p>
+        <div class="tags"><span class="tag">Okta</span><span class="tag">Duo</span><span class="tag">Entra ID</span></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- STACK -->
+  <section class="glass panel" id="stack">
+    <div class="sec-head">
+      <div><span class="eyebrow">Tools &amp; platforms</span><h2>How my stack fits together</h2>
+        <p class="muted" style="max-width:62ch">Each tool below does one job and hands off to the next. Identity decides who reaches the platform, the platform runs the workloads, backup protects them, and immutable storage keeps a copy no one can delete. Select any tool to see what it connects to.</p></div>
+    </div>
+
+    <!-- layered map -->
+    <div class="map">
+      <div class="layer">
+        <div class="lhead"><b>Access</b><span>Who gets in, and from what device</span></div>
+        <div class="lchips" data-layer="id"></div>
+      </div>
+      <div class="flow"><span>gates admin and user access to</span></div>
+      <div class="layer">
+        <div class="lhead"><b>Workloads &amp; compute</b><span>Where the VMs and desktops run</span></div>
+        <div class="lchips" data-layer="virt"></div>
+      </div>
+      <div class="flow"><span>protected by image-level backup</span></div>
+      <div class="layer">
+        <div class="lhead"><b>Backup &amp; recovery</b><span>Copies, restores, DR tests</span></div>
+        <div class="lchips" data-layer="backup"></div>
+      </div>
+      <div class="flow"><span>copies land on</span></div>
+      <div class="layer">
+        <div class="lhead"><b>Immutable &amp; offsite</b><span>The copy ransomware can't touch</span></div>
+        <div class="lchips" data-layer="vault"></div>
+      </div>
+      <div class="loop">↺ SureBackup and quarterly DR tests restore back into the compute layer to prove it works</div>
+    </div>
+
+    <div class="focusbar" id="focusbar" hidden><span id="focusTxt"></span><button class="copy" type="button" id="clearFocus">Show all</button></div>
+
+    <div class="sec-head" style="margin:28px 0 16px">
+      <div><h3 style="font-size:1.2rem">Every tool, what I do with it, and what it works with</h3></div>
+      <div class="chips" role="group" aria-label="Filter tools">
+        <button class="chip tchip" type="button" data-t="all" aria-pressed="true">All</button>
+        <button class="chip tchip" type="button" data-t="virt" aria-pressed="false">Virtualization</button>
+        <button class="chip tchip" type="button" data-t="backup" aria-pressed="false">Backup</button>
+        <button class="chip tchip" type="button" data-t="id" aria-pressed="false">Identity</button>
+      </div>
+    </div>
+    <div class="tcards" id="tcards"></div>
+  </section>
+
+  <!-- WORK -->
+  <section class="glass panel" id="work">
+    <div class="sec-head">
+      <div><span class="eyebrow">Featured projects</span><h2>Selected work</h2></div>
+      <div class="chips" role="group" aria-label="Filter projects">
+        <button class="chip" type="button" data-f="all" aria-pressed="true">All</button>
+        <button class="chip" type="button" data-f="virt" aria-pressed="false">Virtualization</button>
+        <button class="chip" type="button" data-f="backup" aria-pressed="false">Backup</button>
+        <button class="chip" type="button" data-f="id" aria-pressed="false">Identity</button>
+      </div>
+    </div>
+    <div class="works">
+      <article class="work glass" data-cat="backup">
+        <div class="thumb"><div class="cap">Restore time (RTO)</div><div class="big">4 h → 22 min</div>
+          <div class="bars"><div class="bar">Before<i style="width:100%"></i></div><div class="bar">After<i class="new" style="width:9.2%"></i></div></div></div>
+        <div class="wbody"><div class="wtop"><div><h3>Veeam backup overhaul</h3><div class="k">Backup &amp; DR · 320 VMs · 140 TB</div></div></div>
+          <dl class="cs"><div><dt>Challenge</dt><dd>Backup Exec jobs failing nightly, no offsite copy, no immutability, and a ransomware near-miss.</dd></div><div><dt>Approach</dt><dd>Veeam v12 on a scale-out repository, S3 Object Lock immutable tier, WAN-accelerated offsite copy, SureBackup lab to prove restores.</dd></div><div><dt>Results</dt><dd><ul><li>Restore time cut from 4 h to 22 min</li><li>320 VMs / 140 TB under full 3-2-1-1 coverage</li><li>100% success across 8 quarterly DR tests</li><li>$95K storage savings from deduplication</li></ul></dd></div></dl></div>
+      </article>
+      <article class="work glass" data-cat="id">
+        <div class="thumb"><div class="cap">New-hire onboarding</div><div class="big">3 days → 4 h</div>
+          <div class="bars"><div class="bar">Before<i style="width:100%"></i></div><div class="bar">After<i class="new" style="width:5.6%"></i></div></div></div>
+        <div class="wbody"><div class="wtop"><div><h3>Okta SSO consolidation</h3><div class="k">Identity · 1,200 users · 40+ apps</div></div></div>
+          <dl class="cs"><div><dt>Challenge</dt><dd>1,200 users across four identity providers, manual provisioning, helpdesk flooded with password resets.</dd></div><div><dt>Approach</dt><dd>Single Okta tenant with SSO to 40+ apps, SCIM provisioning from Workday, adaptive MFA and Zero Trust policies.</dd></div><div><dt>Results</dt><dd><ul><li>Onboarding cut from 3 days to 4 hours</li><li>100% MFA adoption in the first week</li><li>Login-related tickets down 64%</li><li>99.8% of credential-stuffing attempts blocked</li></ul></dd></div></dl></div>
+      </article>
+      <article class="work glass" data-cat="virt">
+        <div class="thumb"><div class="nodes"><div class="node live"><i></i><i></i><i></i></div><div class="node live"><i></i><i></i><i></i></div><div class="node up"><i></i><i></i><i></i></div><div class="node live"><i></i><i></i><i></i></div></div><div class="cap" style="text-align:center">Rolling host-by-host upgrade</div></div>
+        <div class="wbody"><div class="wtop"><div><h3>vSphere &amp; vSAN upgrade</h3><div class="k">Virtualization · VMware</div></div></div>
+          <dl class="cs"><div><dt>Challenge</dt><dd>Hosts and vSphere versions nearing end of support; production and VDI couldn't take a maintenance weekend.</dd></div><div><dt>Approach</dt><dd>Rolling host-by-host upgrade with DRS and vMotion, vSAN health and resync checks between steps, host refresh onto Cisco UCS X-Series, Horizon pools rebuilt.</dd></div><div><dt>Results</dt><dd><ul><li>No unplanned downtime during the upgrade</li><li>Veeam restore point taken for every critical VM before each change</li><li>Documented rollback per host, under ITIL change control</li></ul></dd></div></dl></div>
+      </article>
+      <article class="work glass" data-cat="virt">
+        <div class="thumb"><div class="nodes"><div class="node live"><i></i><i></i><i></i></div><span class="link"></span><div class="node live"><i></i><i></i><i></i></div><span class="link"></span><div class="node live"><i></i><i></i><i></i></div></div><div class="cap" style="text-align:center">Failover cluster · shared CSV</div></div>
+        <div class="wbody"><div class="wtop"><div><h3>Hyper-V failover cluster</h3><div class="k">Virtualization · Hyper-V</div></div></div>
+          <dl class="cs"><div><dt>Challenge</dt><dd>Independent Hyper-V hosts — one hardware fault or patch reboot took its VMs offline with it.</dd></div><div><dt>Approach</dt><dd>Windows Server Failover Cluster with Cluster Shared Volumes, dedicated Live Migration and heartbeat networks, Cluster-Aware Updating, Veeam cluster-aware backup.</dd></div><div><dt>Results</dt><dd><ul><li>Monthly patching moved into business hours</li><li>A failed node restarts its VMs on the surviving nodes automatically</li><li>Backups follow VMs as they migrate between nodes</li></ul></dd></div></dl></div>
+      </article>
+      <article class="work glass" data-cat="backup">
+        <div class="thumb"><div class="merge"><div class="src"><i></i><i></i><i></i></div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 12h14M13 6l6 6-6 6"/></svg><div class="dst">1 console</div></div><div class="cap" style="text-align:center">VMs · file shares · databases</div></div>
+        <div class="wbody"><div class="wtop"><div><h3>Cohesity consolidation</h3><div class="k">Backup &amp; DR · Cohesity</div></div></div>
+          <dl class="cs"><div><dt>Challenge</dt><dd>Several point backup tools, each with its own retention rules and no single view of what was protected.</dd></div><div><dt>Approach</dt><dd>Cohesity DataProtect cluster with SLA-based policies, DataLock (WORM) snapshots, and instant mass restore for VMware workloads.</dd></div><div><dt>Results</dt><dd><ul><li>One policy set replaced per-tool retention schedules</li><li>Immutable snapshots can't be deleted by a compromised admin account</li><li>Restores tested on the same platform they run from</li></ul></dd></div></dl></div>
+      </article>
+      <article class="work glass" data-cat="id">
+        <div class="thumb"><div class="checks"><div>Managed laptop · patched<span class="y">allow</span></div><div>Admin · Verified Push<span class="y">allow</span></div><div>Personal device · outdated OS<span class="n">block</span></div></div></div>
+        <div class="wbody"><div class="wtop"><div><h3>Duo MFA &amp; device trust</h3><div class="k">Identity · Duo</div></div></div>
+          <dl class="cs"><div><dt>Challenge</dt><dd>Remote access protected by passwords alone; personal devices connected straight into VDI and jump hosts.</dd></div><div><dt>Approach</dt><dd>Duo on VPN, RDP gateways and Horizon; Device Health and Trusted Endpoints policies; Verified Push for admins; phased enrollment by department.</dd></div><div><dt>Results</dt><dd><ul><li>MFA enforced on every remote access path</li><li>Outdated or unmanaged devices blocked before login</li><li>Privileged accounts on Verified Push</li><li>Rollout completed without a helpdesk spike</li></ul></dd></div></dl></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- BACKUP MATRIX -->
+  <section class="glass panel" id="backup">
+    <div class="sec-head"><div><span class="eyebrow">Backup platforms</span><h2>Which backup tool, and when</h2></div></div>
+    <div class="tbl"><table>
+      <thead><tr><th>Platform</th><th>Best fit</th><th>Deployment</th><th>Immutability</th><th>I recommend it when</th></tr></thead>
+      <tbody>
+        <tr><td>Veeam</td><td>VMware / Hyper-V estates</td><td>Software on your hardware or cloud</td><td>Hardened Linux repo, S3 Object Lock</td><td>You want control and SureBackup-verified restores</td></tr>
+        <tr><td>Cohesity</td><td>Consolidating many workloads</td><td>Appliance or software</td><td>DataLock WORM snapshots</td><td>One policy engine for VMs, NAS and databases</td></tr>
+        <tr><td>Druva</td><td>SaaS apps, endpoints, remote sites</td><td>Fully SaaS</td><td>Air-gapped cloud by design</td><td>M365 and laptop data with no infrastructure to run</td></tr>
+        <tr><td>Acronis</td><td>SMB and endpoint-heavy fleets</td><td>Agent-based, cloud or local</td><td>Immutable cloud storage</td><td>Backup and endpoint protection in one agent</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="glass panel" id="process">
+    <div class="sec-head"><div><span class="eyebrow">My process</span><h2>How an engagement runs</h2></div></div>
+    <div class="steps">
+      <div class="step glass"><div class="top"><span class="ic"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="7" cy="7" r="4.5"/><path d="m10.5 10.5 3 3"/></svg></span><span class="n">01</span></div><h3>Assess</h3><p>Inventory, health checks, current RPO/RTO and risks.</p></div>
+      <div class="step glass"><div class="top"><span class="ic"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 13h12M4 13V6l4-3 4 3v7"/></svg></span><span class="n">02</span></div><h3>Design</h3><p>Target architecture, sizing and a rollback plan for every step.</p></div>
+      <div class="step glass"><div class="top"><span class="ic"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m9.5 3.5 3 3-7 7h-3v-3z"/></svg></span><span class="n">03</span></div><h3>Build</h3><p>Staged change windows under ITIL change control.</p></div>
+      <div class="step glass"><div class="top"><span class="ic"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m3 8.5 3 3 7-7"/></svg></span><span class="n">04</span></div><h3>Validate</h3><p>Test restores, failover drills and MFA policy checks.</p></div>
+      <div class="step glass"><div class="top"><span class="ic"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="2" width="10" height="12" rx="1.5"/><path d="M6 6h4M6 9h4"/></svg></span><span class="n">05</span></div><h3>Hand over</h3><p>Runbooks, as-built docs and knowledge transfer to your team.</p></div>
+    </div>
+  </section>
+
+  <!-- CREDENTIALS -->
+  <section class="creds" id="credentials">
+    <div class="glass panel">
+      <span class="eyebrow">Experience</span>
+      <h2 style="margin:8px 0 14px">Where I've done it</h2>
+      <div class="jobs">
+        <div class="job"><span class="when">2019 – now</span><div><b>VP Engineering Operations</b><span>WPG Consulting · delivery, budgets, team leadership</span></div></div>
+        <div class="job"><span class="when">2016 – now</span><div><b>Sr. Infrastructure Engineer</b><span>WPG Consulting · 54+ projects, 100+ clients</span></div></div>
+        <div class="job"><span class="when">2015 – 2016</span><div><b>L2 Network Engineer</b><span>Empro Technical Solutions · 24×7 managed services</span></div></div>
+        <div class="job"><span class="when">2009 – 2015</span><div><b>Tech Lead</b><span>Red Paladin · 300+ VMs incl. VDI, SAN, AD</span></div></div>
+        <div class="job"><span class="when">2008 – 2009</span><div><b>Tech Lead</b><span>Elemany IT Services · virtualization, SAN, Windows Server</span></div></div>
+      </div>
+    </div>
+    <div class="glass panel">
+      <span class="eyebrow">Certifications · 19</span>
+      <h2 style="margin:8px 0 14px">Key credentials</h2>
+      <div class="certs">
+        <div class="cert">VMware VCP – DCV 2020<em>VMware</em></div>
+        <div class="cert">VCP6 &amp; VCP5 – DCV<em>VMware</em></div>
+        <div class="cert">MCSE – Windows Server &amp; AD<em>Microsoft</em></div>
+        <div class="cert">CCNP Enterprise · CCNP Collaboration<em>Cisco</em></div>
+        <div class="cert">CCNA + 7 Cisco Specialist certs<em>Cisco</em></div>
+        <div class="cert">Claude Code · Model Context Protocol<em>Anthropic</em></div>
+        <div class="cert">AI Essentials + 3 courses<em>Google</em></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact glass panel" id="contact">
+    <div>
+      <span class="eyebrow">Let's connect</span>
+      <h2 style="margin-top:10px">Planning a migration, a backup redesign or an MFA rollout?</h2>
+      <div class="clist">
+        <div class="crow"><span class="ic"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="3.5" width="12" height="9" rx="1.5"/><path d="m2.5 4.5 5.5 4 5.5-4"/></svg></span><span class="v" id="email">acharyajigar@gmail.com</span><button class="copy" type="button" id="copyBtn">Copy</button></div>
+        <div class="crow"><span class="ic"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M3 6h2v7H3zM4 2.8a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4zM7 6h2v1c.4-.7 1.2-1.2 2.3-1.2 2 0 2.7 1.2 2.7 3.2V13h-2V9.4c0-1-.3-1.7-1.2-1.7-1 0-1.8.7-1.8 1.9V13H7z"/></svg></span><a class="v" href="https://www.linkedin.com/in/jigar-acharya-b2481024" target="_blank" rel="noopener">in/jigar-acharya-b2481024</a></div>
+        <div class="crow"><span class="ic"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 14s5-4.4 5-8A5 5 0 0 0 3 6c0 3.6 5 8 5 8z"/><circle cx="8" cy="6" r="1.8"/></svg></span><span>Parlin, NJ · onsite/hybrid NJ–NY, remote nationally</span></div>
+      </div>
+    </div>
+    <div class="book glass">
+      <h3 style="font-size:1.15rem">Book a 30-minute call</h3>
+      <p class="muted" style="font-size:.88rem">Useful to have ready:</p>
+      <ul>
+        <li>Rough size: hosts, VMs, TB protected or users</li>
+        <li>What's running today (VMware, Hyper-V, current backup, IdP)</li>
+        <li>The deadline or event driving the work</li>
+      </ul>
+      <a class="pill dark" style="justify-self:start" href="https://calendar.app.google/1Qoiy76WvWXRWqL18" target="_blank" rel="noopener">Pick a time <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 11 11 5M6 5h5v5"/></svg></a>
+    </div>
+    <div class="sphere" aria-hidden="true"></div>
+  </section>
+
+  <footer class="glass"><span>© 2026 Jigar Acharya · WPG Consulting</span><span>VMware · Hyper-V · Veeam · Cohesity · Okta · Duo</span></footer>
+</div>
+
+<!-- Review control: remove before publishing to GitHub -->
+<div class="switch glass" role="group" aria-label="Design options">
+  <small>Option</small>
+  <button class="opt" type="button" data-o="a" aria-pressed="false"><i style="background:linear-gradient(135deg,#8B6CF0,#5E8BF2)"></i>A · Lavender</button>
+  <button class="opt" type="button" data-o="b" aria-pressed="false"><i style="background:linear-gradient(135deg,#0E7C8C,#2F8FD6)"></i>B · Glacier</button>
+  <button class="opt" type="button" data-o="c" aria-pressed="false"><i style="background:linear-gradient(135deg,#A78BFA,#5EEAD4)"></i>C · Aurora</button>
+  <span class="sep"></span>
+  <button class="opt" type="button" id="modeBtn" aria-label="Toggle light or dark">◐ <span id="modeLbl">Dark</span></button>
+</div>
+
+<script>
+(function(){
+  var r=document.documentElement;
+  function sync(){
+    document.querySelectorAll('.opt[data-o]').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.o===r.getAttribute('data-opt')?'true':'false');});
+    document.getElementById('modeLbl').textContent=r.getAttribute('data-mode')==='dark'?'Light':'Dark';
+  }
+  document.querySelectorAll('.opt[data-o]').forEach(function(b){b.addEventListener('click',function(){
+    var o=b.dataset.o;r.setAttribute('data-opt',o);
+    r.setAttribute('data-mode',o==='c'?'dark':'light');
+    try{localStorage.setItem('ja-opt',o);localStorage.setItem('ja-mode',r.getAttribute('data-mode'));}catch(e){}
+    sync();
+  });});
+  document.getElementById('modeBtn').addEventListener('click',function(){
+    var m=r.getAttribute('data-mode')==='dark'?'light':'dark';r.setAttribute('data-mode',m);
+    try{localStorage.setItem('ja-mode',m);}catch(e){}
+    sync();
+  });
+  sync();
+
+  var chips=document.querySelectorAll('#work .chip'),works=document.querySelectorAll('.work');
+  chips.forEach(function(c){c.addEventListener('click',function(){
+    chips.forEach(function(x){x.setAttribute('aria-pressed',x===c?'true':'false');});
+    works.forEach(function(w){w.hidden=!(c.dataset.f==='all'||w.dataset.cat===c.dataset.f);});
+  });});
+
+  var links=document.querySelectorAll('.links a');
+  var secs=['top','about','services','stack','work','process','credentials','contact'].map(function(id){return document.getElementById(id);});
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var id=e.target.id;links.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+id);});}});},{rootMargin:'-45% 0px -50% 0px'});
+    secs.forEach(function(s){s&&io.observe(s);});
+  }
+
+  var btn=document.getElementById('copyBtn');
+  btn.addEventListener('click',function(){
+    var el=document.getElementById('email');
+    function sel(){var rg=document.createRange();rg.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(rg);btn.textContent='Selected';}
+    try{navigator.clipboard.writeText(el.textContent).then(function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy';},1600);},sel);}catch(e){sel();}
+  });
+})();
+
+(function(){
+  var T=[
+   {id:'vsphere',ab:'VM',name:'VMware vSphere',sub:'ESXi + vCenter',layer:'virt',
+    role:'The hypervisor platform most of my client workloads run on.',
+    do:['Cluster design with DRS, HA and EVC sized for N+1','Rolling lifecycle upgrades with vMotion and vLCM, no outage window','vCenter roles, permissions and alarm baselines'],
+    rel:[['vsan','Provides the shared storage under the cluster'],['ucs','Hosts run on UCS blades and X-Series nodes'],['horizon','Runs the VDI desktop pools'],['veeam','Image-level backup through VADP with Changed Block Tracking'],['cohesity','Snapshot-based protection and instant mass restore'],['okta','vCenter admin sign-in federated through the IdP'],['ad','Admin groups mapped to vCenter roles']]},
+   {id:'vsan',ab:'vS',name:'VMware vSAN',sub:'Hyperconverged storage',layer:'virt',
+    role:'Local disks in each host pooled into one policy-driven datastore.',
+    do:['Storage policies per workload: failures to tolerate, RAID-1 vs RAID-5/6','Health checks and resync monitoring between upgrade steps','Capacity planning for rebuild headroom'],
+    rel:[['vsphere','Built into the vSphere cluster it serves'],['ucs','Deployed on vSAN ReadyNode UCS configurations'],['veeam','Backed up at VM level, policy-aware restores'],['cohesity','Protected alongside the rest of the vSphere estate']]},
+   {id:'horizon',ab:'Hz',name:'VMware Horizon',sub:'Virtual desktops (VDI)',layer:'virt',
+    role:'Desktops and apps delivered from the data center to any device.',
+    do:['Instant-clone pools built from a maintained golden image','Unified Access Gateway for secure external access','Pool rebuilds after vSphere upgrades'],
+    rel:[['vsphere','Desktop VMs run on the vSphere cluster'],['duo','MFA at the Access Gateway through Duo RADIUS'],['okta','SAML sign-in from the Okta dashboard'],['ad','Entitlements and desktop policies from AD groups']]},
+   {id:'hyperv',ab:'HV',name:'Microsoft Hyper-V',sub:'Failover Clustering',layer:'virt',
+    role:'The second hypervisor I build and support, usually for Windows-centric sites.',
+    do:['Windows Server Failover Clusters with Cluster Shared Volumes','Dedicated Live Migration and heartbeat networks','Cluster-Aware Updating so patching moves VMs, not users'],
+    rel:[['ad','Cluster and computer objects live in AD'],['veeam','Backup using Resilient Change Tracking, follows VMs across nodes'],['cohesity','Protected by the same policies as vSphere VMs'],['acronis','Agent-based protection at smaller sites'],['ucs','Hosts run on UCS where the site standardised on Cisco'],['duo','MFA on RDP to hosts and jump servers']]},
+   {id:'ucs',ab:'UC',name:'Cisco UCS',sub:'Compute hardware',layer:'virt',
+    role:'The server layer under the hypervisor, managed as code-like templates.',
+    do:['Service profiles and templates so every host is identical','Host refreshes onto X-Series with no workload downtime','Firmware baselines aligned to the hypervisor release'],
+    rel:[['vsphere','ESXi hosts'],['vsan','vSAN ReadyNode builds'],['hyperv','Hyper-V cluster nodes']]},
+
+   {id:'veeam',ab:'Ve',name:'Veeam Backup & Replication',sub:'with Veeam ONE',layer:'backup',
+    role:'My default backup platform for VMware and Hyper-V estates.',
+    do:['Scale-out repositories with performance and capacity tiers','SureBackup jobs that boot restored VMs in an isolated lab','Replication and WAN-accelerated offsite copies','Veeam ONE for job, capacity and RPO monitoring'],
+    rel:[['vsphere','Reads VM changes through VADP and CBT'],['hyperv','Reads VM changes through RCT'],['s3','Immutable copies on S3 Object Lock'],['ad','Backup server kept off the production domain so stolen AD credentials can\'t delete backups'],['cohesity','Compared side by side when choosing a platform']]},
+   {id:'cohesity',ab:'Co',name:'Cohesity DataProtect',sub:'Hyperconverged backup',layer:'backup',
+    role:'One platform and one policy engine for VMs, file shares and databases.',
+    do:['SLA-based protection policies instead of per-job schedules','DataLock (WORM) snapshots for ransomware resilience','Instant mass restore of VMware VMs','CloudArchive to object storage for long-term retention'],
+    rel:[['vsphere','Protects VMs and restores them in bulk'],['hyperv','Protects Hyper-V VMs under the same policies'],['s3','Archives long-term copies to object storage'],['okta','Console sign-in through SAML single sign-on'],['ad','Role-based access from AD groups']]},
+   {id:'druva',ab:'Dr',name:'Druva',sub:'SaaS backup',layer:'backup',
+    role:'Backup for data that doesn\'t live in the data center.',
+    do:['Microsoft 365 backup: Exchange Online, OneDrive, SharePoint, Teams','Endpoint backup for laptops and remote staff','No backup servers or storage to run or patch'],
+    rel:[['entra','Connects to the Microsoft 365 tenant'],['okta','Console sign-in through SAML single sign-on'],['veeam','Covers the SaaS and endpoint data Veeam isn\'t protecting']]},
+   {id:'acronis',ab:'Ac',name:'Acronis Cyber Protect',sub:'Backup + endpoint security',layer:'backup',
+    role:'Backup and anti-malware in one agent for smaller sites.',
+    do:['Image and file backup for servers and workstations','Built-in anti-ransomware and patch management','Cloud or local backup targets'],
+    rel:[['hyperv','Protects standalone Hyper-V hosts and VMs'],['vsphere','Agentless protection for small vSphere sites'],['druva','Alternative when endpoint security is needed in the same agent']]},
+   {id:'s3',ab:'S3',name:'S3 Object Lock',sub:'Immutable object storage',layer:'backup',
+    role:'The copy that can\'t be changed or deleted before its retention date, even by an admin.',
+    do:['Compliance-mode retention matched to the backup policy','Offsite tier for the "1" immutable copy in 3-2-1-1','Lifecycle rules to control long-term cost'],
+    rel:[['veeam','Capacity-tier target for immutable backups'],['cohesity','CloudArchive target for long-term retention']]},
+
+   {id:'okta',ab:'Ok',name:'Okta',sub:'SSO, MFA and lifecycle',layer:'id',
+    role:'The front door: one sign-in for every app, and access that follows the HR record.',
+    do:['SAML and OIDC single sign-on to 40+ applications','SCIM provisioning driven by Workday: hire, move, leave','Adaptive MFA and Zero Trust sign-on policies'],
+    rel:[['ad','Okta AD Agent syncs users and delegates authentication'],['duo','Duo added as an MFA factor in Okta'],['entra','Federation between Okta and Microsoft 365'],['horizon','SAML sign-in to VDI'],['vsphere','Federated vCenter admin sign-in'],['cohesity','SSO to the backup console'],['druva','SSO to the backup console']]},
+   {id:'duo',ab:'Du',name:'Duo',sub:'MFA and device trust',layer:'id',
+    role:'MFA on the access paths that SSO doesn\'t cover: VPN, RDP and VDI.',
+    do:['Duo Authentication Proxy for RADIUS and LDAP apps','Device Health and Trusted Endpoints: unmanaged devices blocked','Verified Push for privileged accounts','Duo for Windows Logon on servers and jump hosts'],
+    rel:[['okta','Used as an MFA factor inside Okta policies'],['ad','Users synced with Directory Sync'],['horizon','RADIUS MFA at the Unified Access Gateway'],['hyperv','MFA on RDP to hosts and admin servers']]},
+   {id:'entra',ab:'En',name:'Microsoft Entra ID',sub:'Cloud identity',layer:'id',
+    role:'Microsoft 365 identity, kept in sync with on-prem AD.',
+    do:['Entra Connect sync from on-prem AD','Conditional Access policies','Hybrid join for Windows devices'],
+    rel:[['ad','Users and groups synced by Entra Connect'],['okta','Federated with Okta where Okta is the primary IdP'],['druva','The Microsoft 365 tenant Druva backs up']]},
+   {id:'ad',ab:'AD',name:'Active Directory',sub:'On-prem directory',layer:'id',
+    role:'The source of users, groups and server identities everything else builds on.',
+    do:['Domain and OU design, Group Policy baselines','Tiered admin accounts to separate server and user access','Health and replication checks before any platform change'],
+    rel:[['okta','Source directory for Okta via the AD Agent'],['entra','Synced to Entra ID by Entra Connect'],['duo','User source for Duo Directory Sync'],['hyperv','Required by Hyper-V failover clusters'],['horizon','Entitlements for desktop pools'],['vsphere','Admin groups for vCenter roles'],['veeam','Deliberately not trusted by the backup server']]}
+  ];
+  var byId={};T.forEach(function(t){byId[t.id]=t;});
+  var linked={};T.forEach(function(t){linked[t.id]=linked[t.id]||{};t.rel.forEach(function(r){linked[t.id][r[0]]=1;(linked[r[0]]=linked[r[0]]||{})[t.id]=1;});});
+
+  var mapChips={id:['okta','duo','entra','ad'],virt:['horizon','vsphere','vsan','hyperv','ucs'],backup:['veeam','cohesity','acronis','druva'],
+    vault:[['s3','S3 Object Lock'],['veeam','Veeam hardened repository'],['cohesity','Cohesity DataLock'],['druva','Druva cloud (air-gapped)']]};
+  document.querySelectorAll('.lchips').forEach(function(box){
+    mapChips[box.dataset.layer].forEach(function(c){
+      var id=Array.isArray(c)?c[0]:c,label=Array.isArray(c)?c[1]:byId[c].name;
+      var b=document.createElement('button');b.type='button';b.className='tbtn';b.dataset.id=id;
+      b.innerHTML='<i>'+byId[id].ab+'</i>'+label;box.appendChild(b);
+    });
+  });
+
+  var wrap=document.getElementById('tcards');
+  var layerName={virt:'Virtualization',backup:'Backup & DR',id:'Identity'};
+  T.forEach(function(t){
+    var a=document.createElement('article');a.className='tcard glass';a.id='tool-'+t.id;a.dataset.id=t.id;a.dataset.layer=t.layer;
+    a.innerHTML='<div class="th"><span class="badge">'+t.ab+'</span><div><h3>'+t.name+'</h3><small>'+layerName[t.layer]+' · '+t.sub+'</small></div></div>'+
+      '<p class="role">'+t.role+'</p>'+
+      '<div><div class="tlabel">What I do with it</div><ul class="do">'+t.do.map(function(d){return '<li>'+d+'</li>';}).join('')+'</ul></div>'+
+      '<div><div class="tlabel">Works with</div><div class="rels">'+t.rel.map(function(r){return '<button type="button" class="rel" data-go="'+r[0]+'"><b>'+byId[r[0]].name.replace(' Backup & Replication','')+'</b><span>'+r[1]+'</span></button>';}).join('')+'</div></div>';
+    wrap.appendChild(a);
+  });
+
+  var stack=document.getElementById('stack'),bar=document.getElementById('focusbar'),txt=document.getElementById('focusTxt'),cur=null;
+  function focus(id,scroll){
+    if(!id||cur===id){cur=null;stack.classList.remove('focusing');bar.hidden=true;
+      stack.querySelectorAll('.hit,.sel').forEach(function(e){e.classList.remove('hit','sel');});return;}
+    cur=id;stack.classList.add('focusing');
+    var set=Object.assign({},linked[id]);set[id]=1;
+    stack.querySelectorAll('.tbtn,.tcard').forEach(function(e){var k=e.dataset.id;e.classList.toggle('hit',!!set[k]);e.classList.toggle('sel',k===id);});
+    var n=Object.keys(linked[id]).length;
+    txt.innerHTML='<b>'+byId[id].name+'</b> connects to '+n+' other tools in this stack.';bar.hidden=false;
+    // make sure the selected card is visible under any filter
+    resetFilter();
+    if(scroll){var c=document.getElementById('tool-'+id);c&&c.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'center'});}
+  }
+  stack.addEventListener('click',function(e){
+    var b=e.target.closest('.tbtn');if(b){focus(b.dataset.id,false);return;}
+    var r=e.target.closest('.rel');if(r){cur=null;focus(r.dataset.go,true);return;}
+  });
+  document.getElementById('clearFocus').addEventListener('click',function(){focus(null);});
+
+  var tchips=document.querySelectorAll('.tchip');
+  function applyFilter(f){
+    tchips.forEach(function(x){x.setAttribute('aria-pressed',x.dataset.t===f?'true':'false');});
+    document.querySelectorAll('.tcard').forEach(function(c){c.hidden=!(f==='all'||c.dataset.layer===f);});
+  }
+  function resetFilter(){applyFilter('all');}
+  tchips.forEach(function(c){c.addEventListener('click',function(){applyFilter(c.dataset.t);});});
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,9 @@
+Drop these 4 official logo files in this folder (SVG preferred, PNG works if you rename the extension in index.html):
+
+  cohesity.svg
+  duo.svg
+  druva.svg
+  acronis.svg
+
+Get them from each vendor's website or press/media kit. Until they exist, the page shows initials (Co, Du, Dr, Ac).
+You can delete this .txt file once the logos are in.
